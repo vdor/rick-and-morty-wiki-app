@@ -5,6 +5,7 @@ import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
 import 'package:rick_and_morty_wiki/router/router_delegate.dart';
 import 'package:rick_and_morty_wiki/router/router_parser.dart';
+import 'package:rick_and_morty_wiki/theme.dart';
 
 void main() {
   runApp(App());
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
     return BlocProvider(
       create: (_) => routerBloc,
       child: MaterialApp.router(
+        theme: ThemeData(primaryColor: AppColors.primaryColor),
         routeInformationParser: routeInformationParser,
         routerDelegate: routerDelegate,
         backButtonDispatcher: AppBackButtonDispatcher(routerDelegate),

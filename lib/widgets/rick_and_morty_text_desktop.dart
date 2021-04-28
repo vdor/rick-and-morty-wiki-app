@@ -24,36 +24,16 @@ class _StateRickAndMortyTextAnimated extends State<RickAndMortyTextAnimated>
   );
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 270,
-      height: 400,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: ScaleTransition(
-              scale: _animation,
-              child: Image.asset("assets/images/text_rick_pic.png"),
-            ),
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 150, left: 150, right: 150),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(),
+          child: ScaleTransition(
+            scale: _animation,
+            child: Image.asset("assets/images/rick_and_morty_text.png"),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: EdgeInsets.only(top: 60),
-              child: ScaleTransition(
-                scale: _animation,
-                child: Image.asset("assets/images/text_and_pic.png"),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ScaleTransition(
-              scale: _animation,
-              child: Image.asset("assets/images/text_morty_pic.png"),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

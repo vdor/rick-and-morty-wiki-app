@@ -26,6 +26,7 @@ dependencies:
 
   flutter_bloc: ^7.0.0
   equatable: ^2.0.0
+  responsive_builder: ^0.4.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -51,6 +52,8 @@ flutter:
     - "assets/images/text_morty_pic.png"
     - "assets/images/text_and_pic.png"
     - "assets/images/rick_and_morty_looking_pic.png"
+    - "assets/images/rick_and_morty_text.png"
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

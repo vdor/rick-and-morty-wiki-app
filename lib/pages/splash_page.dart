@@ -1,66 +1,17 @@
-import 'dart:async';
+import 'package:flutter/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:rick_and_morty_wiki/pages/splash_page_desktop.dart';
+import 'package:rick_and_morty_wiki/pages/splash_page_mobile.dart';
 
-import 'package:flutter/material.dart';
-import 'package:rick_and_morty_wiki/widgets/rick_and_morty_text.dart';
-
-class SplashPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _SplashPageState();
-  }
-}
-
-class _SplashPageState extends State<SplashPage> {
-  Timer? timer;
+class SplashPage extends StatelessWidget {
+  const SplashPage();
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage("assets/images/stars_bg.png")),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                  child: Center(
-                child: RickAndMortyTextAnimated(),
-              )),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset("assets/images/rick_and_morty_looking_pic.png")
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+    return ScreenTypeLayout(
+      mobile: SplashPageMobile(),
+      tablet: SplashPageDesktop(),
+      desktop: SplashPageDesktop(),
     );
-  }
-
-  @override
-  initState() {
-    super.initState();
-    timer = Timer(Duration(seconds: 1), () {
-      _goToWelcomePage(context);
-    });
-  }
-
-  deactivate() {
-    super.deactivate();
-    timer?.cancel();
-  }
-
-  _goToWelcomePage(BuildContext context) {
-    // BlocProvider.of<RouterBloc>(context).add(
-    //   RouterSetPathEvent(
-    //     [WelcomePageConfig()],
-    //   ),
-    // );
   }
 }

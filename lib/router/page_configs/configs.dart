@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-
+import 'package:rick_and_morty_wiki/pages/heroes_list_page.dart';
 import 'package:rick_and_morty_wiki/pages/splash_page.dart';
 
 import 'base.dart';
@@ -41,6 +41,6 @@ class ListHeroesPageConfig extends PageConfig {
 
   @override
   Widget buildContent() {
-    return SplashPage();
+    return ListHeroesPage();
   }
 }
