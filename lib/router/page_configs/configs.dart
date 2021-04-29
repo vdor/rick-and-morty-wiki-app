@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_list_page.dart';
-import 'package:rick_and_morty_wiki/pages/heroes_search_page.dart';
+import 'package:rick_and_morty_wiki/pages/hero_details_page.dart';
 import 'package:rick_and_morty_wiki/pages/splash_page.dart';
 
 import 'base.dart';
@@ -46,12 +46,12 @@ class ListHeroesPageConfig extends PageConfig {
   }
 }
 
-class SearchHeroesPageConfig extends PageConfig {
-  const SearchHeroesPageConfig({String key = 'SearchHeroes'}) : super(key: key);
+class HeroDetailsPageConfig extends PageConfig {
+  const HeroDetailsPageConfig({String key = 'SearchHeroes'}) : super(key: key);
   final String path = searchHeroesPath;
 
   @override
   Widget buildContent() {
-    return SearchHeroesPage();
+    return HeroDetailsPage();
   }
 }

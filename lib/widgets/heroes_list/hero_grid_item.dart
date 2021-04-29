@@ -8,6 +8,8 @@ class HeroGridItem extends StatelessWidget {
   final String name;
   final String kind;
   final String sex;
+  final GestureTapCallback? onTap;
+  final bool useHero;
 
   const HeroGridItem({
     required this.image,
@@ -15,12 +17,14 @@ class HeroGridItem extends StatelessWidget {
     required this.name,
     required this.kind,
     required this.sex,
+    this.useHero = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 38),
         child: Center(
@@ -29,10 +33,7 @@ class HeroGridItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: image,
-                ),
+                child: _buildAvatar(),
               ),
               SizedBox(
                 height: 18,
@@ -72,6 +73,20 @@ class HeroGridItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  _buildAvatar() {
+    final avatar = CircleAvatar(
+      radius: 37,
+      backgroundImage: image,
+    );
+    if (!useHero) {
+      return avatar;
+    }
+    return Hero(
+      tag: "$name-grid",
+      child: avatar,
     );
   }
 }

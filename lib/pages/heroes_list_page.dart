@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
-import 'package:rick_and_morty_wiki/widgets/heroes_listing.dart';
+import 'package:rick_and_morty_wiki/widgets/heroes_list/heroes_listing.dart';
 import 'package:rick_and_morty_wiki/widgets/search_bar.dart';
 
 class ListHeroesPage extends StatefulWidget {

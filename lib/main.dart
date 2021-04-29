@@ -42,6 +42,7 @@ class App extends StatelessWidget {
               overline: TextStyles.overline,
               subtitle1: TextStyles.subtitle1.copyWith(color: AppColors.black),
               caption: TextStyles.caption.copyWith(color: AppColors.grey3),
+              headline5: TextStyles.headline5.copyWith(color: AppColors.black),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey7),
@@ -62,6 +63,7 @@ class App extends StatelessWidget {
               overline: TextStyles.overline,
               subtitle1: TextStyles.subtitle1.copyWith(color: AppColors.white),
               caption: TextStyles.caption.copyWith(color: AppColors.grey8),
+              headline5: TextStyles.headline5.copyWith(color: AppColors.white),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.white),

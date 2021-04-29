@@ -8,6 +8,8 @@ class HeroListItem extends StatelessWidget {
   final String name;
   final String kind;
   final String sex;
+  final GestureTapCallback? onTap;
+  final bool useHero;
 
   const HeroListItem({
     required this.image,
@@ -15,21 +17,20 @@ class HeroListItem extends StatelessWidget {
     required this.name,
     required this.kind,
     required this.sex,
+    this.useHero = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 37,
-              backgroundImage: image,
-            ),
+            _buildAvatar(),
             SizedBox(
               width: 18,
             ),
@@ -55,6 +56,20 @@ class HeroListItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  _buildAvatar() {
+    final avatar = CircleAvatar(
+      radius: 37,
+      backgroundImage: image,
+    );
+    if (!useHero) {
+      return avatar;
+    }
+    return Hero(
+      tag: "$name-list",
+      child: avatar,
     );
   }
 }

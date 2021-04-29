@@ -16,7 +16,6 @@ class _SplashPageMobileState extends State<SplashPageMobile> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
       child: DecoratedBox(
         decoration: BoxDecoration(
           image:
@@ -37,9 +36,7 @@ class _SplashPageMobileState extends State<SplashPageMobile> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    "assets/images/rick_and_morty_looking_pic.png",
-                  )
+                  Image.asset("assets/images/rick_and_morty_looking_pic.png")
                 ],
               ),
             ],

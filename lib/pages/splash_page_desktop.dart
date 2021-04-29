@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/events.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
-import 'package:rick_and_morty_wiki/widgets/rick_and_morty_text_desktop.dart';
+import 'package:rick_and_morty_wiki/widgets/splash/rick_and_morty_text_desktop.dart';
 
 class SplashPageDesktop extends StatefulWidget {
   @override

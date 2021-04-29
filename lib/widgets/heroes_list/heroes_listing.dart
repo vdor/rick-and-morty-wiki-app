@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
-import 'package:rick_and_morty_wiki/widgets/hero_grid.dart';
-import 'package:rick_and_morty_wiki/widgets/hero_list.dart';
+import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
+import 'package:rick_and_morty_wiki/router/bloc/events.dart';
+import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
+import 'package:rick_and_morty_wiki/widgets/heroes_list/hero_grid.dart';
+import 'package:rick_and_morty_wiki/widgets/heroes_list/hero_list.dart';
 
 enum DisplayListing {
   list,
@@ -91,11 +95,19 @@ class _StateHeroesListing extends State<HeroesListing> {
   }
 
   Widget buildList() {
-    return HeroList(heroes: widget.heroes);
+    return HeroList(
+      heroes: widget.heroes,
+      hideHeroTag: _displayListing != DisplayListing.list,
+      selectHandler: _onSelectHero,
+    );
   }
 
   Widget buildGrid() {
-    return HeroGrid(heroes: widget.heroes);
+    return HeroGrid(
+      heroes: widget.heroes,
+      hideHeroTag: _displayListing != DisplayListing.grid,
+      selectHandler: _onSelectHero,
+    );
   }
 
   _toggleDisplayMode() {
@@ -106,5 +118,13 @@ class _StateHeroesListing extends State<HeroesListing> {
         _displayListing = DisplayListing.list;
       }
     });
+  }
+
+  _onSelectHero(int index) {
+    BlocProvider.of<RouterBloc>(context).add(
+      RouterPushEvent(
+        HeroDetailsPageConfig(),
+      ),
+    );
   }
 }

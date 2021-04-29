@@ -53,6 +53,14 @@ class TextStyles {
     letterSpacing: 1,
     height: 1.8,
   );
+
+  static TextStyle headline5 = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 34,
+    letterSpacing: 0.25,
+  );
 }
 
 // бек и мидлвер система. интегромат. систему логика в блоках. zappier
