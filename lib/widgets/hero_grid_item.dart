@@ -29,12 +29,9 @@ class HeroGridItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                child: Hero(
-                  tag: name,
-                  child: CircleAvatar(
-                    radius: 60,
-                    backgroundImage: image,
-                  ),
+                child: CircleAvatar(
+                  radius: 60,
+                  backgroundImage: image,
                 ),
               ),
               SizedBox(

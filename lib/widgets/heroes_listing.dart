@@ -40,10 +40,16 @@ class _StateHeroesListing extends State<HeroesListing> {
           SizedBox(
             height: 12,
           ),
-          if (_displayListing == DisplayListing.list)
-            buildList()
-          else
-            buildGrid(),
+          Expanded(
+            child: AnimatedCrossFade(
+              firstChild: buildList(),
+              secondChild: buildGrid(),
+              crossFadeState: _displayListing == DisplayListing.list
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 400),
+            ),
+          )
         ],
       ),
     );
@@ -85,11 +91,11 @@ class _StateHeroesListing extends State<HeroesListing> {
   }
 
   Widget buildList() {
-    return Expanded(child: HeroList(heroes: widget.heroes));
+    return HeroList(heroes: widget.heroes);
   }
 
   Widget buildGrid() {
-    return Expanded(child: HeroGrid(heroes: widget.heroes));
+    return HeroGrid(heroes: widget.heroes);
   }
 
   _toggleDisplayMode() {

@@ -12,6 +12,7 @@ class HeroGrid extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 2,
       mainAxisSpacing: 24,
+      shrinkWrap: true,
       children: heroes
           .map(
             (h) => HeroGridItem(

@@ -26,12 +26,10 @@ class HeroListItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Hero(
-                tag: name,
-                child: CircleAvatar(
-                  radius: 37,
-                  backgroundImage: image,
-                )),
+            CircleAvatar(
+              radius: 37,
+              backgroundImage: image,
+            ),
             SizedBox(
               width: 18,
             ),

@@ -10,6 +10,7 @@ class HeroList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: heroes.length,
       itemBuilder: (context, index) => HeroListItem(
         image: NetworkImage(heroes[index].imageUri),
