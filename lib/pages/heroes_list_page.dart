@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_wiki/widgets/search_bar.dart';
 
 class ListHeroesPage extends StatefulWidget {
   @override
@@ -11,8 +12,8 @@ class ListHeroesState extends State<ListHeroesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Hey there"),
+      appBar: SearchBar(
+        hintText: "Find a hero",
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/router/back_button_dispatcher.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
@@ -19,13 +20,51 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => routerBloc,
-      child: MaterialApp.router(
-        theme: ThemeData(primaryColor: AppColors.primaryColor),
-        routeInformationParser: routeInformationParser,
-        routerDelegate: routerDelegate,
-        backButtonDispatcher: AppBackButtonDispatcher(routerDelegate),
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.white));
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: BlocProvider(
+        create: (_) => routerBloc,
+        child: MaterialApp.router(
+          themeMode: ThemeMode.dark,
+          theme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: AppColors.grey7,
+            ),
+            primaryColor: AppColors.white,
+            primaryColorLight: AppColors.gray6,
+            primaryTextTheme: TextTheme(
+              bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey4),
+            ),
+            accentTextTheme: TextTheme(
+              bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey7),
+            ),
+            dividerColor: AppColors.grey7,
+            iconTheme: IconThemeData(color: AppColors.grey7),
+          ),
+          darkTheme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: AppColors.grey,
+            ),
+            primaryColor: AppColors.gray5,
+            primaryColorLight: AppColors.primaryColorLight,
+            primaryTextTheme: TextTheme(
+              bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey),
+            ),
+            accentTextTheme: TextTheme(
+              bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.white),
+            ),
+            dividerColor: AppColors.grey,
+            iconTheme: IconThemeData(color: AppColors.grey),
+          ),
+          routeInformationParser: routeInformationParser,
+          routerDelegate: routerDelegate,
+          backButtonDispatcher: AppBackButtonDispatcher(routerDelegate),
+        ),
       ),
     );
   }
