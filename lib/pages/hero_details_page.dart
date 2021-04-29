@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty_wiki/domain/episode.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/events.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
+import 'package:rick_and_morty_wiki/widgets/hero_details/episodes_list.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/header.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/hero_info_item.dart';
 
@@ -109,8 +111,45 @@ class HeroDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 36,
+                height: 24,
               ),
+              const EpisodesList(episodes: [
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+                Episode(
+                    title: "title",
+                    name: "name",
+                    date: "date",
+                    imageUri: "https://picsum.photos/200/300?q"),
+              ]),
             ],
           ),
         ),

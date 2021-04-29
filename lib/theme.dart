@@ -16,6 +16,8 @@ class AppColors {
 
   static Color green = Color(0xFF43D049);
   static Color red = Color(0xFFEB5757);
+
+  static Color blue = Color(0xFF22A2BD);
 }
 
 class TextStyles {
@@ -50,7 +52,7 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     fontSize: 16,
     letterSpacing: 0.5,
-    height: 2,
+    height: 1.9,
   );
 
   static TextStyle caption = TextStyle(
