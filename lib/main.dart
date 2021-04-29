@@ -39,10 +39,12 @@ class App extends StatelessWidget {
             primaryColorLight: AppColors.gray6,
             primaryTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey4),
+              bodyText2: TextStyles.bodyText1.copyWith(color: AppColors.black),
               overline: TextStyles.overline,
               subtitle1: TextStyles.subtitle1.copyWith(color: AppColors.black),
               caption: TextStyles.caption.copyWith(color: AppColors.grey3),
               headline5: TextStyles.headline5.copyWith(color: AppColors.black),
+              headline6: TextStyles.headline6.copyWith(color: AppColors.black),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey7),
@@ -60,10 +62,12 @@ class App extends StatelessWidget {
             primaryColorLight: AppColors.primaryColorLight,
             primaryTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey),
+              bodyText2: TextStyles.bodyText1.copyWith(color: AppColors.white),
               overline: TextStyles.overline,
               subtitle1: TextStyles.subtitle1.copyWith(color: AppColors.white),
               caption: TextStyles.caption.copyWith(color: AppColors.grey8),
               headline5: TextStyles.headline5.copyWith(color: AppColors.white),
+              headline6: TextStyles.headline6.copyWith(color: AppColors.white),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.white),

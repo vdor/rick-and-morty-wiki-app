@@ -29,6 +29,14 @@ class TextStyles {
     letterSpacing: 0.44,
   );
 
+  static TextStyle bodyText2 = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 13,
+    letterSpacing: 0.5,
+  );
+
   static TextStyle overline = TextStyle(
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w500,
@@ -50,7 +58,7 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     fontSize: 12,
-    letterSpacing: 1,
+    letterSpacing: 0.5,
     height: 1.8,
   );
 
@@ -60,6 +68,14 @@ class TextStyles {
     fontStyle: FontStyle.normal,
     fontSize: 34,
     letterSpacing: 0.25,
+  );
+
+  static TextStyle headline6 = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 20,
+    letterSpacing: 0.15,
   );
 }
 
