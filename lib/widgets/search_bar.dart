@@ -114,9 +114,12 @@ class _StateSearchBar extends State<SearchBar> {
                         ),
                       ),
                       AnimatedOpacity(
-                          opacity: hasText ? 0 : 1,
-                          duration: animationDuration,
+                        opacity: hasText ? 0 : 1,
+                        duration: animationDuration,
+                        child: Material(
+                          color: Theme.of(context).primaryColorLight,
                           child: IconButton(
+                            splashRadius: 20,
                             icon: Icon(
                               Icons.filter_alt_outlined,
                               color: Theme.of(context).iconTheme.color,
@@ -126,7 +129,9 @@ class _StateSearchBar extends State<SearchBar> {
                                 : () {
                                     print("go");
                                   },
-                          )),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ))),

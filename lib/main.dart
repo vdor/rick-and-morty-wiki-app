@@ -39,12 +39,17 @@ class App extends StatelessWidget {
             primaryColorLight: AppColors.gray6,
             primaryTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey4),
+              overline: TextStyles.overline,
+              subtitle1: TextStyles.subtitle1.copyWith(color: AppColors.black),
+              caption: TextStyles.caption.copyWith(color: AppColors.grey3),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey7),
             ),
             dividerColor: AppColors.grey7,
             iconTheme: IconThemeData(color: AppColors.grey7),
+            accentIconTheme: IconThemeData(color: AppColors.black),
+            secondaryHeaderColor: AppColors.grey3,
           ),
           darkTheme: ThemeData(
             textSelectionTheme: TextSelectionThemeData(
@@ -54,6 +59,9 @@ class App extends StatelessWidget {
             primaryColorLight: AppColors.primaryColorLight,
             primaryTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey),
+              overline: TextStyles.overline,
+              subtitle1: TextStyles.subtitle1.copyWith(color: AppColors.white),
+              caption: TextStyles.caption.copyWith(color: AppColors.grey8),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.white),
@@ -61,6 +69,7 @@ class App extends StatelessWidget {
             dividerColor: AppColors.grey,
             iconTheme: IconThemeData(color: AppColors.grey),
             accentIconTheme: IconThemeData(color: AppColors.white),
+            secondaryHeaderColor: AppColors.grey7,
           ),
           routeInformationParser: routeInformationParser,
           routerDelegate: routerDelegate,
