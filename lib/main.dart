@@ -60,6 +60,7 @@ class App extends StatelessWidget {
             ),
             dividerColor: AppColors.grey,
             iconTheme: IconThemeData(color: AppColors.grey),
+            accentIconTheme: IconThemeData(color: AppColors.white),
           ),
           routeInformationParser: routeInformationParser,
           routerDelegate: routerDelegate,

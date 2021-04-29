@@ -16,35 +16,65 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _StateSearchBar extends State<SearchBar> {
+  double borderRadius = 100;
+  final TextEditingController _textController = TextEditingController();
+  final animationDuration = const Duration(milliseconds: 300);
+
+  @override
+  initState() {
+    super.initState();
+    _textController.addListener(() {
+      setState(() {
+        borderRadius = hasText ? 0 : 100;
+      });
+    });
+  }
+
+  bool get hasText => _textController.text.isNotEmpty;
+
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(color: Theme.of(context).primaryColor),
       child: SafeArea(
-        child: Padding(
+        child: AnimatedPadding(
+            duration: animationDuration,
             padding: EdgeInsets.symmetric(
-              horizontal: 16,
+              horizontal: hasText ? 0 : 16,
               vertical: 16,
             ),
-            child: DecoratedBox(
+            child: AnimatedContainer(
+                duration: animationDuration,
+                curve: Curves.fastOutSlowIn,
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColorLight,
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(borderRadius),
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.search,
-                        color: Theme.of(context).iconTheme.color,
+                      AnimatedCrossFade(
+                        firstChild: Icon(
+                          Icons.search,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
+                        secondChild: Icon(
+                          Icons.arrow_back,
+                          color: Theme.of(context).accentIconTheme.color,
+                        ),
+                        crossFadeState: hasText
+                            ? CrossFadeState.showSecond
+                            : CrossFadeState.showFirst,
+                        duration: animationDuration,
                       ),
                       SizedBox(
                         width: 18,
                       ),
                       Expanded(
                         child: TextField(
+                          controller: _textController,
                           autofocus: false,
                           style: Theme.of(context).accentTextTheme.bodyText1,
                           cursorColor:
@@ -67,27 +97,36 @@ class _StateSearchBar extends State<SearchBar> {
                       SizedBox(
                         width: 18,
                       ),
-                      SizedBox(
-                        width: 1,
-                        height: 44,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).dividerColor,
+                      AnimatedOpacity(
+                        opacity: hasText ? 0 : 1,
+                        duration: animationDuration,
+                        child: SizedBox(
+                          width: 1,
+                          height: 44,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).dividerColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.filter_alt_outlined,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                        onPressed: () {
-                          print("go");
-                        },
-                      )
+                      AnimatedOpacity(
+                          opacity: hasText ? 0 : 1,
+                          duration: animationDuration,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.filter_alt_outlined,
+                              color: Theme.of(context).iconTheme.color,
+                            ),
+                            onPressed: hasText
+                                ? null
+                                : () {
+                                    print("go");
+                                  },
+                          )),
                     ],
                   ),
                 ))),
