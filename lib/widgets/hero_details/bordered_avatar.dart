@@ -4,12 +4,12 @@ import 'package:flutter/widgets.dart';
 class BorderedAvatar extends StatelessWidget {
   final ImageProvider? image;
   final double radius;
-  final String tag;
+  final String id;
 
   const BorderedAvatar({
     required this.image,
     required this.radius,
-    this.tag = "BorderedAvatar",
+    this.id = "BorderedAvatar",
   });
 
   @override
@@ -30,15 +30,17 @@ class BorderedAvatar extends StatelessWidget {
           child: Stack(
             children: [
               Hero(
-                tag: "$tag-grid",
+                tag: "$id-grid",
                 child: CircleAvatar(
+                  backgroundColor: Theme.of(context).primaryColor,
                   backgroundImage: image,
                   radius: radius,
                 ),
               ),
               Hero(
-                tag: "$tag-list",
+                tag: "$id-list",
                 child: CircleAvatar(
+                  backgroundColor: Theme.of(context).primaryColor,
                   backgroundImage: image,
                   radius: radius,
                 ),

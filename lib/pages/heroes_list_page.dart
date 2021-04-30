@@ -128,6 +128,7 @@ class ListHeroesState extends State<ListHeroesPage> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) => HeroListItem(
+          id: heroes[index].id,
           image: NetworkImage(heroes[index].imageUri),
           isAlive: heroes[index].isAlive,
           name: heroes[index].name,
@@ -147,6 +148,7 @@ class ListHeroesState extends State<ListHeroesPage> {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) => HeroGridItem(
+          id: heroes[index].id,
           image: NetworkImage(heroes[index].imageUri),
           isAlive: heroes[index].isAlive,
           name: heroes[index].name,

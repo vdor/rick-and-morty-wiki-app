@@ -137,7 +137,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
         onBackTap: () {
           _goBack(context);
         },
-        tag: widget.id,
+        id: widget.id,
         image: hero != null
             ? NetworkImage(
                 (state as HeroDetailLoadedState).hero.heroInfo.imageUri)

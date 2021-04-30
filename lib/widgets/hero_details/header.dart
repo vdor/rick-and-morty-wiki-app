@@ -10,12 +10,12 @@ const double containerHeight = coverImageHeight + avatarRadius;
 
 class Header extends StatelessWidget {
   final ImageProvider? image;
-  final String tag;
+  final String id;
   final GestureTapCallback onBackTap;
 
   const Header({
     required this.image,
-    required this.tag,
+    required this.id,
     required this.onBackTap,
   });
 
@@ -47,7 +47,7 @@ class Header extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: BorderedAvatar(
-              tag: tag,
+              id: id,
               image: image,
               radius: avatarRadius,
             ),

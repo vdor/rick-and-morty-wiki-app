@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
 
 class HeroGridItem extends StatelessWidget {
+  final String id;
   final ImageProvider image;
   final bool isAlive;
   final String name;
@@ -12,6 +13,7 @@ class HeroGridItem extends StatelessWidget {
   final bool useHero;
 
   const HeroGridItem({
+    required this.id,
     required this.image,
     required this.isAlive,
     required this.name,
@@ -87,7 +89,7 @@ class HeroGridItem extends StatelessWidget {
       return avatar;
     }
     return Hero(
-      tag: "$name-grid",
+      tag: "$id-grid",
       child: avatar,
     );
   }

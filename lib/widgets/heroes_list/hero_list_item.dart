@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
 
 class HeroListItem extends StatelessWidget {
+  final String id;
   final ImageProvider image;
   final bool isAlive;
   final String name;
@@ -12,6 +13,7 @@ class HeroListItem extends StatelessWidget {
   final bool useHero;
 
   const HeroListItem({
+    required this.id,
     required this.image,
     required this.isAlive,
     required this.name,
@@ -68,7 +70,7 @@ class HeroListItem extends StatelessWidget {
       return avatar;
     }
     return Hero(
-      tag: "$name-list",
+      tag: "$id-list",
       child: avatar,
     );
   }
