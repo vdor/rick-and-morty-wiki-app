@@ -53,6 +53,10 @@ flutter:
     - "assets/images/text_and_pic.png"
     - "assets/images/rick_and_morty_looking_pic.png"
     - "assets/images/rick_and_morty_text.png"
+    - "assets/images/ic_character.png"
+    - "assets/images/ic_episode.png"
+    - "assets/images/ic_location.png"
+    - "assets/images/ic_settings.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

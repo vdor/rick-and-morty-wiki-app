@@ -36,19 +36,21 @@ class HeroInfoItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: Theme.of(context)
-                    .primaryTextTheme
-                    .caption
-                    ?.copyWith(color: Theme.of(context).secondaryHeaderColor),
-              ),
-              SizedBox(height: 4),
-              Text(text, style: Theme.of(context).primaryTextTheme.bodyText2),
-            ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: Theme.of(context)
+                      .primaryTextTheme
+                      .caption
+                      ?.copyWith(color: Theme.of(context).secondaryHeaderColor),
+                ),
+                SizedBox(height: 4),
+                Text(text, style: Theme.of(context).primaryTextTheme.bodyText2),
+              ],
+            ),
           ),
           if (onTap != null) Icon(Icons.chevron_right),
         ],

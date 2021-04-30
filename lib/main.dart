@@ -41,6 +41,7 @@ class App extends StatelessWidget {
         child: MaterialApp.router(
           themeMode: ThemeMode.dark,
           theme: ThemeData(
+            brightness: Brightness.light,
             textSelectionTheme: TextSelectionThemeData(
               cursorColor: AppColors.grey7,
             ),
@@ -64,6 +65,7 @@ class App extends StatelessWidget {
             secondaryHeaderColor: AppColors.grey3,
           ),
           darkTheme: ThemeData(
+            brightness: Brightness.dark,
             textSelectionTheme: TextSelectionThemeData(
               cursorColor: AppColors.grey,
             ),

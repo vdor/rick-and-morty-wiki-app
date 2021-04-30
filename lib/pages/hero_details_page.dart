@@ -8,12 +8,10 @@ import 'package:rick_and_morty_wiki/features/heroes/detail_bloc/state.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/events.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
+import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/episodes_list.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/header.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/hero_info_item.dart';
-
-final content =
-    '''Richard "Rick" Sanchez is one of the two eponymous protagonists from the Adult Swim animated television series Rick and Morty. Created by Justin Roiland and Dan Harmon, Sanchez is a misanthropic alcoholic scientist inspired by Emmett "Doc" Brown from Back to the Future and Mister Fantastic from Marvel Comics.''';
 
 class HeroDetailsPage extends StatefulWidget {
   final String id;
@@ -31,9 +29,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
     final bloc = BlocProvider.of<HeroDetailBloc>(context);
     final hero = _getHero(bloc.state);
 
-    print(hero);
     if (hero == null) {
-      print("go");
       bloc.add(HeroLoadDetailEvent(widget.id));
     }
     super.initState();
@@ -140,7 +136,8 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
         id: widget.id,
         image: hero != null
             ? NetworkImage(
-                (state as HeroDetailLoadedState).hero.heroInfo.imageUri)
+                (state as HeroDetailLoadedState).hero.heroInfo.imageUri,
+              )
             : null,
       );
     });

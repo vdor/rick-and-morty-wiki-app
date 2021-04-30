@@ -72,6 +72,9 @@ class HeroListItem extends StatelessWidget {
     return Hero(
       tag: "$id-list",
       child: avatar,
+      flightShuttleBuilder: (flightContext, animation, flightDirection,
+              fromHeroContext, toHeroContext) =>
+          avatar,
     );
   }
 }

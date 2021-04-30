@@ -124,11 +124,7 @@ class _StateSearchBar extends State<SearchBar> {
                               Icons.filter_alt_outlined,
                               color: Theme.of(context).iconTheme.color,
                             ),
-                            onPressed: hasText
-                                ? null
-                                : () {
-                                    print("go");
-                                  },
+                            onPressed: hasText ? null : () {},
                           ),
                         ),
                       ),

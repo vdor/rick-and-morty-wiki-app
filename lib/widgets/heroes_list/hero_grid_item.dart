@@ -91,6 +91,9 @@ class HeroGridItem extends StatelessWidget {
     return Hero(
       tag: "$id-grid",
       child: avatar,
+      flightShuttleBuilder: (flightContext, animation, flightDirection,
+              fromHeroContext, toHeroContext) =>
+          avatar,
     );
   }
 }

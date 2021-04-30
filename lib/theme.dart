@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AppColors {
@@ -81,12 +82,7 @@ class TextStyles {
   );
 }
 
-// бек и мидлвер система. интегромат. систему логика в блоках. zappier
-// программируемая система.
-// n8n - опенсорс
-// уже есть бек. и миддл. заходишь и регистрируешьс -> создается инстанс n8n
-// миддл на ноде. создает инстанс и меняет планы
-// API смена пароля и т.д.
-//
-// хочет взять чела на питон и кубик.
-// коооок
+bool isDarkMode(BuildContext context) {
+  final ThemeData theme = Theme.of(context);
+  return theme.brightness == Brightness.dark;
+}

@@ -7,6 +7,7 @@ import 'package:rick_and_morty_wiki/features/heroes/list_bloc/state.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/events.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
+import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar.dart';
 import 'package:rick_and_morty_wiki/widgets/heroes_list/hero_grid_item.dart';
 import 'package:rick_and_morty_wiki/widgets/heroes_list/hero_list_item.dart';
 import 'package:rick_and_morty_wiki/widgets/search_bar.dart';
@@ -40,6 +41,7 @@ class ListHeroesState extends State<ListHeroesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SearchBar(hintText: "Searh a hero"),
+      bottomNavigationBar: BottomNavBar(),
       body: Material(
         color: Theme.of(context).primaryColor,
         child: CustomScrollView(
