@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ImageBlured extends StatelessWidget {
-  final ImageProvider image;
+  final ImageProvider? image;
 
   const ImageBlured({required this.image});
 
@@ -12,10 +12,12 @@ class ImageBlured extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: image,
-        ),
+        image: image == null
+            ? null
+            : DecorationImage(
+                fit: BoxFit.cover,
+                image: image!,
+              ),
       ),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),

@@ -6,6 +6,7 @@ class RouteParser extends RouteInformationParser<PageConfig> {
   @override
   Future<PageConfig> parseRouteInformation(
       RouteInformation routeInformation) async {
+    // return HeroDetailsPageConfig();
     if (routeInformation.location == null) {
       return SplashPageConfig();
     }

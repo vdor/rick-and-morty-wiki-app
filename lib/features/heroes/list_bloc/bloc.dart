@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
-import 'package:rick_and_morty_wiki/features/heroes/bloc/event.dart';
-import 'package:rick_and_morty_wiki/features/heroes/bloc/state.dart';
+import 'package:rick_and_morty_wiki/features/heroes/list_bloc/event.dart';
+import 'package:rick_and_morty_wiki/features/heroes/list_bloc/state.dart';
 import 'package:rick_and_morty_wiki/features/heroes/repository/base.dart';
 
 class HeroesBloc extends Bloc<HeroesEvent, HeroesState> {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BorderedAvatar extends StatelessWidget {
-  final ImageProvider image;
+  final ImageProvider? image;
   final double radius;
   final String tag;
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
-import 'package:rick_and_morty_wiki/features/heroes/bloc/bloc.dart';
-import 'package:rick_and_morty_wiki/features/heroes/bloc/event.dart';
-import 'package:rick_and_morty_wiki/features/heroes/bloc/state.dart';
+import 'package:rick_and_morty_wiki/features/heroes/list_bloc/bloc.dart';
+import 'package:rick_and_morty_wiki/features/heroes/list_bloc/event.dart';
+import 'package:rick_and_morty_wiki/features/heroes/list_bloc/state.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/events.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
@@ -165,10 +165,15 @@ class ListHeroesState extends State<ListHeroesPage> {
   }
 
   _onSelectHero(int index) {
-    BlocProvider.of<RouterBloc>(context).add(
-      RouterPushEvent(
-        HeroDetailsPageConfig(),
-      ),
-    );
+    final bloc = BlocProvider.of<HeroesBloc>(context);
+    if (bloc.state is HeroesLoadedState) {
+      BlocProvider.of<RouterBloc>(context).add(
+        RouterPushEvent(
+          HeroDetailsPageConfig.fromId(
+            (bloc.state as HeroesLoadedState).heroes[index].id,
+          ),
+        ),
+      );
+    }
   }
 }

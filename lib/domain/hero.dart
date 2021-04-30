@@ -20,3 +20,25 @@ class HeroInfo extends Equatable {
   @override
   List<Object?> get props => [name, kind, isAlive, sex];
 }
+
+class HeroInfoDetailed extends Equatable {
+  final HeroInfo heroInfo;
+  final String description;
+  final String location;
+  final String place;
+
+  const HeroInfoDetailed({
+    required this.heroInfo,
+    required this.description,
+    required this.location,
+    required this.place,
+  });
+
+  @override
+  List<Object?> get props => [
+        heroInfo,
+        description,
+        location,
+        place,
+      ];
+}

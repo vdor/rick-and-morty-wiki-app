@@ -9,7 +9,7 @@ const double coverImageHeight = 218;
 const double containerHeight = coverImageHeight + avatarRadius;
 
 class Header extends StatelessWidget {
-  final ImageProvider image;
+  final ImageProvider? image;
   final String tag;
   final GestureTapCallback onBackTap;
 

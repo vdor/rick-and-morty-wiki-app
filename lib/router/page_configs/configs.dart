@@ -14,7 +14,7 @@ const splashPath = '/splash';
 const listHeroesPath = '/list-heroes';
 const searchHeroesPath = '/search-heroes';
 const filterHeroesPath = '/filter-heroes';
-const heroDetailsPath = '/hero-details';
+const heroDetailsPath = '/hero-details/:id';
 
 const listPlacesPath = '/list-places';
 const searchPlacesPath = '/search-places';
@@ -47,11 +47,22 @@ class ListHeroesPageConfig extends PageConfig {
 }
 
 class HeroDetailsPageConfig extends PageConfig {
-  const HeroDetailsPageConfig({String key = 'SearchHeroes'}) : super(key: key);
-  final String path = searchHeroesPath;
+  final String path;
+
+  const HeroDetailsPageConfig({required String key, required this.path})
+      : super(key: path);
+
+  HeroDetailsPageConfig.fromId(String id, {String? key})
+      : path = HeroDetailsPageConfig.buildPathById(id),
+        super(key: key ?? 'HeriDetails-$id');
+
+  static String buildPathById(String id) =>
+      heroDetailsPath.replaceAll(":id", id);
+
+  String get id => path.split("/").last;
 
   @override
   Widget buildContent() {
-    return HeroDetailsPage();
+    return HeroDetailsPage(id);
   }
 }
