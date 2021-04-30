@@ -14,6 +14,7 @@ final content =
 
 class HeroDetailsPage extends StatelessWidget {
   final HeroInfo hero = HeroInfo(
+    id: "1",
     name: "name1",
     kind: "kind",
     isAlive: true,

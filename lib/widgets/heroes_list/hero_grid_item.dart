@@ -26,7 +26,7 @@ class HeroGridItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 38),
+        padding: EdgeInsets.symmetric(horizontal: 38, vertical: 12),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +39,7 @@ class HeroGridItem extends StatelessWidget {
                 height: 18,
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Align(
                     alignment: Alignment.center,
@@ -56,14 +56,16 @@ class HeroGridItem extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Rick Sanchez",
+                      name,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context).primaryTextTheme.subtitle1,
                     ),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Human, Male",
+                      kind,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context).primaryTextTheme.caption,
                     ),
                   ),

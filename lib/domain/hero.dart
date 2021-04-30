@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class HeroInfo extends Equatable {
+  final String id;
   final String name;
   final String kind;
   final bool isAlive;
@@ -8,6 +9,7 @@ class HeroInfo extends Equatable {
   final String imageUri;
 
   const HeroInfo({
+    required this.id,
     required this.name,
     required this.kind,
     required this.isAlive,

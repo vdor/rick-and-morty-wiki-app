@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty_wiki/features/heroes/bloc/bloc.dart';
+import 'package:rick_and_morty_wiki/features/heroes/repository/memory.dart';
 import 'package:rick_and_morty_wiki/router/back_button_dispatcher.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
@@ -13,6 +15,7 @@ void main() {
 }
 
 final routerBloc = RouterBloc(SplashPageConfig());
+final heroesBloc = HeroesBloc(repo: HeroInMemoryRepository());
 
 class App extends StatelessWidget {
   final routerDelegate = AppRouterDelegate(bloc: routerBloc);
@@ -27,8 +30,11 @@ class App extends StatelessWidget {
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
-      child: BlocProvider(
-        create: (_) => routerBloc,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<RouterBloc>(create: (_) => routerBloc),
+          BlocProvider<HeroesBloc>(create: (_) => heroesBloc),
+        ],
         child: MaterialApp.router(
           themeMode: ThemeMode.dark,
           theme: ThemeData(

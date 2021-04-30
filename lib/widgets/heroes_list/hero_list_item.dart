@@ -44,11 +44,11 @@ class HeroListItem extends StatelessWidget {
                       ),
                 ),
                 Text(
-                  "Rick Sanchez",
+                  name,
                   style: Theme.of(context).primaryTextTheme.subtitle1,
                 ),
                 Text(
-                  "Human, Male",
+                  kind,
                   style: Theme.of(context).primaryTextTheme.caption,
                 ),
               ],
