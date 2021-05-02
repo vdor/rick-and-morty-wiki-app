@@ -11,8 +11,9 @@ class HeroesFilterAppBar extends StatelessWidget
       decoration: BoxDecoration(color: Theme.of(context).primaryColor),
       child: SafeArea(
         child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 16,
+            padding: EdgeInsets.only(
+              top: 16,
+              bottom: 24,
             ),
             child: Container(
                 decoration: BoxDecoration(

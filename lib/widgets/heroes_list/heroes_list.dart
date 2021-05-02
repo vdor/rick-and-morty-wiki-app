@@ -55,37 +55,41 @@ class _StateHeroesList extends State<HeroesList> {
   Widget _buildTitle() {
     return Padding(
       padding: EdgeInsets.only(left: 16, right: 24),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            widget.title.toUpperCase(),
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.normal,
-              fontSize: 10,
-              letterSpacing: 1.5,
-              color: Theme.of(context).secondaryHeaderColor,
-            ),
-          ),
-          Opacity(
-            opacity: widget.allowSwitchListType ? 1 : 0,
-            child: IconButton(
-              splashRadius: 20,
-              icon: AnimatedCrossFade(
-                duration: const Duration(milliseconds: 400),
-                firstChild: Icon(Icons.format_list_bulleted_rounded),
-                secondChild: Icon(Icons.grid_view),
-                crossFadeState: displayListing == DisplayListType.list
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: 24),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              widget.title.toUpperCase(),
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
+                fontStyle: FontStyle.normal,
+                fontSize: 10,
+                letterSpacing: 1.5,
+                color: Theme.of(context).secondaryHeaderColor,
               ),
-              onPressed: widget.allowSwitchListType ? _toggleDisplayMode : null,
             ),
-          )
-        ],
+            Opacity(
+              opacity: widget.allowSwitchListType ? 1 : 0,
+              child: IconButton(
+                splashRadius: 20,
+                icon: AnimatedCrossFade(
+                  duration: const Duration(milliseconds: 400),
+                  firstChild: Icon(Icons.format_list_bulleted_rounded),
+                  secondChild: Icon(Icons.grid_view),
+                  crossFadeState: displayListing == DisplayListType.list
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                ),
+                onPressed:
+                    widget.allowSwitchListType ? _toggleDisplayMode : null,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:rick_and_morty_wiki/pages/heroes_filter_page.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_list_page.dart';
 import 'package:rick_and_morty_wiki/pages/hero_details_page.dart';
 import 'package:rick_and_morty_wiki/pages/splash_page.dart';
@@ -12,7 +13,6 @@ const taskDetailPath = '/tasks-detail';
 
 const splashPath = '/splash';
 const listHeroesPath = '/list-heroes';
-const searchHeroesPath = '/search-heroes';
 const filterHeroesPath = '/filter-heroes';
 const heroDetailsPath = '/hero-details/:id';
 
@@ -64,5 +64,15 @@ class HeroDetailsPageConfig extends PageConfig {
   @override
   Widget buildContent() {
     return HeroDetailsPage(id);
+  }
+}
+
+class HeroesFilterPageConfig extends PageConfig {
+  const HeroesFilterPageConfig({String key = 'HeroesFilter'}) : super(key: key);
+  final String path = filterHeroesPath;
+
+  @override
+  Widget buildContent() {
+    return HeroesFilterPage();
   }
 }

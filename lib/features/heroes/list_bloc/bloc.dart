@@ -13,7 +13,13 @@ class HeroesBloc extends Bloc<HeroesEvent, HeroesState> {
   HeroesBloc({
     required this.heroesRepo,
     required this.filterRepo,
-  }) : super(HereoesEmptyState());
+  }) : super(
+          HeroesLoadedState(
+            loaded: false,
+            filter: const HeroesFilter(),
+            heroes: const [],
+          ),
+        );
 
   bool get shouldLoadHeroes {
     final bool should = !(state is HeroesLoadedState) ||
