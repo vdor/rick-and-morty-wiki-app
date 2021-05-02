@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+typedef ChangeTextHandler = void Function(String);
+
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   final String hintText;
+  final ChangeTextHandler onChangeText;
 
-  const SearchBar({required this.hintText});
+  const SearchBar({
+    required this.hintText,
+    required this.onChangeText,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -24,13 +30,25 @@ class _StateSearchBar extends State<SearchBar> {
   initState() {
     super.initState();
     _textController.addListener(() {
+      widget.onChangeText(_textController.text);
       setState(() {
         borderRadius = hasText ? 0 : 100;
       });
     });
   }
 
+  @override
+  dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
   bool get hasText => _textController.text.isNotEmpty;
+
+  _goBack() {
+    FocusScope.of(context).unfocus();
+    _textController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +78,17 @@ class _StateSearchBar extends State<SearchBar> {
                           Icons.search,
                           color: Theme.of(context).iconTheme.color,
                         ),
-                        secondChild: Icon(
-                          Icons.arrow_back,
-                          color: Theme.of(context).accentIconTheme.color,
+                        secondChild: ClipOval(
+                          child: Material(
+                            color: Theme.of(context).primaryColorLight,
+                            child: InkWell(
+                              onTap: _goBack,
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Theme.of(context).accentIconTheme.color,
+                              ),
+                            ),
+                          ),
                         ),
                         crossFadeState: hasText
                             ? CrossFadeState.showSecond

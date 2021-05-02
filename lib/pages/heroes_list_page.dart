@@ -1,183 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_wiki/domain/hero.dart';
+import 'package:rick_and_morty_wiki/domain/heroes_filter.dart';
+
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/event.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/state.dart';
-import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
-import 'package:rick_and_morty_wiki/router/bloc/events.dart';
-import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
-import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar.dart';
-import 'package:rick_and_morty_wiki/widgets/heroes_list/hero_grid_item.dart';
-import 'package:rick_and_morty_wiki/widgets/heroes_list/hero_list_item.dart';
-import 'package:rick_and_morty_wiki/widgets/search_bar.dart';
 
-enum DisplayListType {
-  list,
-  grid,
-}
+import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar.dart';
+
+import 'package:rick_and_morty_wiki/widgets/heroes_list/heroes_list.dart';
+import 'package:rick_and_morty_wiki/widgets/search_bar.dart';
 
 class ListHeroesPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return ListHeroesState();
+    return _StateListHeroesPage();
   }
 }
 
-class ListHeroesState extends State<ListHeroesPage> {
-  DisplayListType displayListing = DisplayListType.list;
-
+class _StateListHeroesPage extends State<ListHeroesPage> {
   @override
   void initState() {
+    super.initState();
     final bloc = BlocProvider.of<HeroesBloc>(context);
-    if (!(bloc.state is HeroesLoadedState)) {
+    if (bloc.shouldLoadHeroes) {
       bloc.add(HeroesLoadEvent());
     }
+  }
 
-    super.initState();
+  _onChangeSearchQuery(BuildContext context, String value) {
+    BlocProvider.of<HeroesBloc>(context).add(
+      HeroesSetFilterEvent(
+        filter: HeroesFilter(query: value),
+        autoload: true,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchBar(hintText: "Searh a hero"),
+      appBar: SearchBar(
+        hintText: "Searh a hero",
+        onChangeText: (text) {
+          _onChangeSearchQuery(context, text);
+        },
+      ),
       bottomNavigationBar: BottomNavBar(),
       body: Material(
         color: Theme.of(context).primaryColor,
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  _buildTitle(),
-                  SizedBox(height: 12),
-                ],
-              ),
-            ),
-            _buildHeroes(),
-          ],
-        ),
+        child: _buildContent(),
       ),
     );
   }
 
-  Widget _buildTitle() {
-    return Padding(
-      padding: EdgeInsets.only(left: 16, right: 24),
-      child: BlocBuilder<HeroesBloc, HeroesState>(
-          builder: (BuildContext context, state) {
-        if (state is HeroesLoadedState && state.heroes.isNotEmpty) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "Всего персонажей: ${state.heroes.length}".toUpperCase(),
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 10,
-                  letterSpacing: 1.5,
-                  color: Theme.of(context).secondaryHeaderColor,
-                ),
-              ),
-              IconButton(
-                splashRadius: 20,
-                icon: AnimatedCrossFade(
-                  duration: const Duration(milliseconds: 400),
-                  firstChild: Icon(Icons.format_list_bulleted_rounded),
-                  secondChild: Icon(Icons.grid_view),
-                  crossFadeState: displayListing == DisplayListType.list
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                ),
-                onPressed: _toggleDisplayMode,
-              )
-            ],
-          );
+  Widget _buildContent() {
+    return BlocBuilder<HeroesBloc, HeroesState>(
+      builder: (context, state) {
+        if (state is HeroesLoadedState && state.filter.queryOnly) {
+          return _buildFilteredByQueryHeroes();
         }
 
-        return SizedBox.shrink();
-      }),
+        if (state is HeroesLoadedState &&
+            state.filter.isNotEmpty &&
+            !state.filter.queryOnly) {
+          return Text("Filter By properties");
+        }
+
+        return _buildListOfHeroes();
+      },
     );
   }
 
-  _toggleDisplayMode() {
-    setState(() {
-      if (displayListing == DisplayListType.list) {
-        displayListing = DisplayListType.grid;
-      } else {
-        displayListing = DisplayListType.list;
-      }
-    });
-  }
-
-  Widget _buildHeroes() {
+  Widget _buildListOfHeroes() {
     return BlocBuilder<HeroesBloc, HeroesState>(builder: (context, state) {
-      if (!(state is HeroesLoadedState)) {
-        return SliverToBoxAdapter();
+      if (state is HeroesLoadedState) {
+        return HeroesList(
+          heroes: state.heroes,
+          title: "Characters: ${state.heroes.length}",
+        );
       }
 
-      if (displayListing == DisplayListType.list)
-        return _buildList(state.heroes);
-      else
-        return _buildGrid(state.heroes);
+      return SizedBox.shrink();
     });
   }
 
-  Widget _buildList(List<HeroInfo> heroes) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) => HeroListItem(
-          id: heroes[index].id,
-          image: NetworkImage(heroes[index].imageUri),
-          isAlive: heroes[index].isAlive,
-          name: heroes[index].name,
-          kind: heroes[index].kind,
-          sex: heroes[index].sex,
-          useHero: displayListing == DisplayListType.list,
-          onTap: () {
-            _onSelectHero(index);
-          },
-        ),
-        childCount: heroes.length,
-      ),
-    );
-  }
+  Widget _buildFilteredByQueryHeroes() {
+    return BlocBuilder<HeroesBloc, HeroesState>(builder: (context, state) {
+      if (state is HeroesLoadedState) {
+        return HeroesList(
+          heroes: state.heroes,
+          title: "Search Results",
+          allowSwitchListType: false,
+        );
+      }
 
-  Widget _buildGrid(List<HeroInfo> heroes) {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) => HeroGridItem(
-          id: heroes[index].id,
-          image: NetworkImage(heroes[index].imageUri),
-          isAlive: heroes[index].isAlive,
-          name: heroes[index].name,
-          kind: heroes[index].kind,
-          sex: heroes[index].sex,
-          useHero: displayListing == DisplayListType.grid,
-          onTap: () {
-            _onSelectHero(index);
-          },
-        ),
-        childCount: heroes.length,
-      ),
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-    );
-  }
-
-  _onSelectHero(int index) {
-    final bloc = BlocProvider.of<HeroesBloc>(context);
-    if (bloc.state is HeroesLoadedState) {
-      BlocProvider.of<RouterBloc>(context).add(
-        RouterPushEvent(
-          HeroDetailsPageConfig.fromId(
-            (bloc.state as HeroesLoadedState).heroes[index].id,
-          ),
-        ),
-      );
-    }
+      return SizedBox.shrink();
+    });
   }
 }

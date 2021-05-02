@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/detail_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/bloc.dart';
-import 'package:rick_and_morty_wiki/features/heroes/repository/memory.dart';
+import 'package:rick_and_morty_wiki/features/heroes/repositories/hero_repository/memory.dart';
+import 'package:rick_and_morty_wiki/features/heroes/repositories/heroes_filter_state_repository/memory.dart';
 import 'package:rick_and_morty_wiki/router/back_button_dispatcher.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
@@ -15,8 +16,10 @@ void main() {
   runApp(App());
 }
 
+final heroFilterRepo = HeroesFilterStateRepositoryInMemory();
 final routerBloc = RouterBloc(SplashPageConfig());
-final heroesBloc = HeroesBloc(repo: HeroInMemoryRepository());
+final heroesBloc = HeroesBloc(
+    heroesRepo: HeroInMemoryRepository(), filterRepo: heroFilterRepo);
 final heroDetailBloc = HeroDetailBloc(repo: HeroInMemoryRepository());
 
 class App extends StatelessWidget {

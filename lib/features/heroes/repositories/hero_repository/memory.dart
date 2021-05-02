@@ -1,5 +1,6 @@
 import 'package:rick_and_morty_wiki/domain/hero.dart';
-import 'package:rick_and_morty_wiki/features/heroes/repository/base.dart';
+import 'package:rick_and_morty_wiki/domain/heroes_filter.dart';
+import 'package:rick_and_morty_wiki/features/heroes/repositories/hero_repository/base.dart';
 
 const List<HeroInfoDetailed> _heroes = [
   const HeroInfoDetailed(
@@ -7,8 +8,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "rick",
       name: "Rick Sanchez",
       kind: "Human (Cyborg)",
-      isAlive: true,
-      sex: "Male",
+      aliveState: AliveState.alive,
+      sex: Sex.male,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/a/a6/Rick_Sanchez.png",
     ),
@@ -22,8 +23,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "morty",
       name: "Morty Smith",
       kind: "Human",
-      isAlive: true,
-      sex: "Male",
+      aliveState: AliveState.alive,
+      sex: Sex.male,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/4/41/Morty_Smith.jpg",
     ),
@@ -37,8 +38,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "summer",
       name: "Summer Smith",
       kind: "Human",
-      isAlive: true,
-      sex: "Female",
+      aliveState: AliveState.alive,
+      sex: Sex.female,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/a/ad/Summer_is_cool.jpeg",
     ),
@@ -51,8 +52,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "jerry",
       name: "Jerry Smith",
       kind: "Human",
-      isAlive: true,
-      sex: "Male",
+      aliveState: AliveState.alive,
+      sex: Sex.male,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/f/f1/Jerry_Smith.png",
     ),
@@ -66,8 +67,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "president_morty",
       name: "President Morty",
       kind: "Human, with cybernetic implants",
-      isAlive: true,
-      sex: "Male",
+      aliveState: AliveState.alive,
+      sex: Sex.male,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/2/23/Evil_Morty_NeverRicking_Morty.jpg",
     ),
@@ -81,8 +82,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "meeseeks",
       name: "Mr. Meeseeks",
       kind: "Artificial Humanoids",
-      isAlive: true,
-      sex: "Extant (regularly dying)",
+      aliveState: AliveState.alive,
+      sex: Sex.male,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/6/6c/MeeseeksHQ.png",
     ),
@@ -96,8 +97,8 @@ const List<HeroInfoDetailed> _heroes = [
       id: "poopybutthole",
       name: "Mr. Poopybutthole",
       kind: "Mr. Poopybutthole's species",
-      isAlive: true,
-      sex: "Extant (regularly dying)",
+      aliveState: AliveState.dead,
+      sex: Sex.male,
       imageUri:
           "https://static.wikia.nocookie.net/rickandmorty/images/5/52/S2e4_mr_poopybutthole.png",
     ),
@@ -117,5 +118,15 @@ class HeroInMemoryRepository extends HeroRepository {
   Future<HeroInfoDetailed?> getById(String id) {
     final hero = _heroes.firstWhere((h) => h.heroInfo.id == id);
     return Future.value(hero);
+  }
+
+  @override
+  Future<Iterable<HeroInfo>> filter(HeroesFilter filter) {
+    final heroes = _heroes
+        .where((h) => h.heroInfo.name
+            .toLowerCase()
+            .contains(filter.query?.toLowerCase() ?? ""))
+        .map((h) => h.heroInfo);
+    return Future.value(heroes);
   }
 }

@@ -1,24 +1,36 @@
 import 'package:equatable/equatable.dart';
 
+enum Sex {
+  male,
+  female,
+  unknown,
+}
+
+enum AliveState {
+  alive,
+  dead,
+  unknown,
+}
+
 class HeroInfo extends Equatable {
   final String id;
   final String name;
   final String kind;
-  final bool isAlive;
-  final String sex;
+  final AliveState aliveState;
+  final Sex sex;
   final String imageUri;
 
   const HeroInfo({
     required this.id,
     required this.name,
     required this.kind,
-    required this.isAlive,
+    required this.aliveState,
     required this.sex,
     required this.imageUri,
   });
 
   @override
-  List<Object?> get props => [name, kind, isAlive, sex];
+  List<Object?> get props => [name, kind, aliveState, sex];
 }
 
 class HeroInfoDetailed extends Equatable {

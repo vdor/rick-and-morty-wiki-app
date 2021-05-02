@@ -8,7 +8,6 @@ import 'package:rick_and_morty_wiki/features/heroes/detail_bloc/state.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/events.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
-import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/episodes_list.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/header.dart';
 import 'package:rick_and_morty_wiki/widgets/hero_details/hero_info_item.dart';
@@ -158,9 +157,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
             Text(
               _aliveText(hero),
               style: Theme.of(context).primaryTextTheme.caption?.copyWith(
-                    color: hero?.heroInfo.isAlive ?? true
-                        ? AppColors.green
-                        : AppColors.red,
+                    color: _aliveColor(hero),
                   ),
             ),
             const SizedBox(height: 36),
@@ -194,7 +191,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
               Expanded(
                 child: HeroInfoItem(
                   label: "Sex",
-                  text: hero.heroInfo.sex,
+                  text: _sexText(hero.heroInfo.sex),
                 ),
               ),
               Expanded(
@@ -233,6 +230,39 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
       return "";
     }
 
-    return hero.heroInfo.isAlive ? "alive" : "dead";
+    switch (hero.heroInfo.aliveState) {
+      case AliveState.alive:
+        return "alive";
+      case AliveState.dead:
+        return "dead";
+      case AliveState.unknown:
+        return "unknown";
+    }
+  }
+
+  Color? _aliveColor(HeroInfoDetailed? hero) {
+    if (hero == null) {
+      return null;
+    }
+
+    switch (hero.heroInfo.aliveState) {
+      case AliveState.alive:
+        return AppColors.green;
+      case AliveState.dead:
+        return AppColors.red;
+      case AliveState.unknown:
+        return AppColors.blue;
+    }
+  }
+
+  String _sexText(Sex sex) {
+    switch (sex) {
+      case Sex.female:
+        return "Female";
+      case Sex.male:
+        return "Male";
+      case Sex.unknown:
+        return "Unknown";
+    }
   }
 }

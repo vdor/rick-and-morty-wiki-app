@@ -46,7 +46,7 @@ class NavigationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = _getColor(context);
     return InkWell(
-      onTap: () {},
+      onTap: active ? null : () {},
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
