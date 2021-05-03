@@ -23,5 +23,5 @@ class HeroesLoadedState extends HeroesState {
   });
 
   @override
-  List<Object?> get props => [heroes];
+  List<Object?> get props => [heroes, filter, loaded];
 }

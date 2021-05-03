@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class HeroesFilterAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
-  bool get hasFilter => true;
+class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? right;
+
+  const SimpleAppBar({this.right});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class HeroesFilterAppBar extends StatelessWidget
       decoration: BoxDecoration(color: Theme.of(context).primaryColor),
       child: SafeArea(
         child: Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 16,
               bottom: 24,
             ),
@@ -36,29 +37,15 @@ class HeroesFilterAppBar extends StatelessWidget
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 18,
-                      ),
+                      const SizedBox(width: 18),
                       Expanded(
                         child: Text(
                           "Filter",
                           style: Theme.of(context).accentTextTheme.bodyText1,
                         ),
                       ),
-                      Spacer(),
-                      AnimatedOpacity(
-                        opacity: hasFilter ? 1 : 0,
-                        duration: const Duration(milliseconds: 300),
-                        child: Material(
-                          color: Theme.of(context).primaryColorLight,
-                          child: IconButton(
-                            splashRadius: 20,
-                            icon: Image.asset(
-                                "assets/images/ic_filter_applied.png"),
-                            onPressed: hasFilter ? () {} : null,
-                          ),
-                        ),
-                      ),
+                      const Spacer(),
+                      if (right != null) right!,
                     ],
                   ),
                 ))),

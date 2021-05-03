@@ -31,7 +31,7 @@ class _StateListHeroesPage extends State<ListHeroesPage> {
   _onChangeSearchQuery(BuildContext context, String value) {
     BlocProvider.of<HeroesBloc>(context).add(
       HeroesSetFilterEvent(
-        filter: HeroesFilter(query: value),
+        filter: HeroesFilter.create(query: value),
         autoload: true,
       ),
     );

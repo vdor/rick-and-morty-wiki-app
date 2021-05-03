@@ -16,7 +16,7 @@ class HeroesBloc extends Bloc<HeroesEvent, HeroesState> {
   }) : super(
           HeroesLoadedState(
             loaded: false,
-            filter: const HeroesFilter(),
+            filter: HeroesFilter.create(),
             heroes: const [],
           ),
         );
@@ -36,13 +36,65 @@ class HeroesBloc extends Bloc<HeroesEvent, HeroesState> {
       yield HeroesLoadedState(heroes: heroes, filter: filter, loaded: true);
     }
 
+    if (event is HeroesToggleAliveFilterEvent) {
+      await filterRepo.toggleAliveState(event.state);
+      final filter = await filterRepo.getFilter();
+      List<HeroInfo> heroes =
+          event.autoload ? (await _getHeroes(filter)).toList() : const [];
+
+      yield HeroesLoadedState(
+          heroes: heroes, filter: filter, loaded: event.autoload);
+    }
+
+    if (event is HeroesToggleSexEvent) {
+      await filterRepo.toggleSex(event.state);
+      final filter = await filterRepo.getFilter();
+      List<HeroInfo> heroes =
+          event.autoload ? (await _getHeroes(filter)).toList() : const [];
+
+      yield HeroesLoadedState(
+          heroes: heroes, filter: filter, loaded: event.autoload);
+    }
+
     if (event is HeroesSetFilterEvent) {
       final filter = event.filter;
+      await filterRepo.setFilter(filter);
       List<HeroInfo> heroes =
           event.autoload ? (await _getHeroes(filter)).toList() : const [];
 
       yield HeroesLoadedState(
           heroes: heroes, filter: event.filter, loaded: event.autoload);
+    }
+
+    if (event is HeroesResetFilterEvent) {
+      final filter = HeroesFilter.create();
+      await filterRepo.setFilter(filter);
+      List<HeroInfo> heroes =
+          event.autoload ? (await _getHeroes(filter)).toList() : const [];
+
+      yield HeroesLoadedState(
+        heroes: heroes,
+        filter: filter,
+        loaded: event.autoload,
+      );
+    }
+
+    if (event is HeroesSetOrderBy) {
+      final currentFilter = await filterRepo.getFilter();
+      final orderBy = currentFilter.orderBy == event.orderBy
+          ? HeroesOrder.none
+          : event.orderBy;
+
+      final filter = currentFilter.copyWith(orderBy: orderBy);
+      await filterRepo.setFilter(filter);
+      List<HeroInfo> heroes =
+          event.autoload ? (await _getHeroes(filter)).toList() : const [];
+
+      yield HeroesLoadedState(
+        heroes: heroes,
+        filter: filter,
+        loaded: event.autoload,
+      );
     }
 
     yield state;

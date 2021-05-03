@@ -66,6 +66,7 @@ class App extends StatelessWidget {
             iconTheme: IconThemeData(color: AppColors.grey7),
             accentIconTheme: IconThemeData(color: AppColors.black),
             secondaryHeaderColor: AppColors.grey3,
+            unselectedWidgetColor: AppColors.grey3,
           ),
           darkTheme: ThemeData(
             brightness: Brightness.dark,
@@ -90,6 +91,7 @@ class App extends StatelessWidget {
             iconTheme: IconThemeData(color: AppColors.grey),
             accentIconTheme: IconThemeData(color: AppColors.white),
             secondaryHeaderColor: AppColors.grey7,
+            unselectedWidgetColor: AppColors.grey7,
           ),
           routeInformationParser: routeInformationParser,
           routerDelegate: routerDelegate,
