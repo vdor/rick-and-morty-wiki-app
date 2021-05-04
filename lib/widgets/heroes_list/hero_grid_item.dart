@@ -36,9 +36,7 @@ class HeroGridItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                child: _buildAvatar(),
-              ),
+              _buildAvatar(),
               SizedBox(
                 height: 18,
               ),
@@ -49,6 +47,8 @@ class HeroGridItem extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       _aliveText.toUpperCase(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                       style:
                           Theme.of(context).primaryTextTheme.overline?.copyWith(
                                 color: _aliveColor,
@@ -59,6 +59,8 @@ class HeroGridItem extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       name,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).primaryTextTheme.subtitle1,
                     ),
@@ -67,6 +69,8 @@ class HeroGridItem extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       kind,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).primaryTextTheme.caption,
                     ),
