@@ -5,8 +5,10 @@ import 'package:rick_and_morty_wiki/features/heroes/detail_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/repositories/hero_repository/memory.dart';
 import 'package:rick_and_morty_wiki/features/heroes/repositories/heroes_filter_state_repository/memory.dart';
+import 'package:rick_and_morty_wiki/features/seasons/list_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/back_button_dispatcher.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
+import 'package:rick_and_morty_wiki/router/bloc/state.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
 import 'package:rick_and_morty_wiki/router/router_delegate.dart';
 import 'package:rick_and_morty_wiki/router/router_parser.dart';
@@ -17,10 +19,15 @@ void main() {
 }
 
 final heroFilterRepo = HeroesFilterStateRepositoryInMemory();
-final routerBloc = RouterBloc(SplashPageConfig());
+final routerBloc = RouterBloc({
+  BottomBarItem.characters: [SplashPageConfig().buildPage()],
+  BottomBarItem.seasons: [ListSeasonsPageConfig().buildPage()],
+});
 final heroesBloc = HeroesBloc(
     heroesRepo: HeroInMemoryRepository(), filterRepo: heroFilterRepo);
 final heroDetailBloc = HeroDetailBloc(repo: HeroInMemoryRepository());
+
+final seasonsBloc = SeasonsBloc();
 
 class App extends StatelessWidget {
   final routerDelegate = AppRouterDelegate(bloc: routerBloc);
@@ -40,6 +47,7 @@ class App extends StatelessWidget {
           BlocProvider<RouterBloc>(create: (_) => routerBloc),
           BlocProvider<HeroesBloc>(create: (_) => heroesBloc),
           BlocProvider<HeroDetailBloc>(create: (_) => heroDetailBloc),
+          BlocProvider<SeasonsBloc>(create: (_) => seasonsBloc)
         ],
         child: MaterialApp.router(
           themeMode: ThemeMode.dark,

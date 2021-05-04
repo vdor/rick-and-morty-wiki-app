@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_filter_page.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_list_page.dart';
 import 'package:rick_and_morty_wiki/pages/hero_details_page.dart';
+import 'package:rick_and_morty_wiki/pages/seasons_list_page.dart';
 import 'package:rick_and_morty_wiki/pages/splash_page.dart';
 
 import 'base.dart';
@@ -21,7 +22,7 @@ const searchPlacesPath = '/search-places';
 const filterPlacesPath = '/filter-places';
 const placeDetailsPath = '/place-details/:id';
 
-const listEpisodesPath = '/list-episodes';
+const listEpisodesPath = '/list-seasons';
 const episodeDetailsPath = '/edpise-details/:id';
 
 const settingsPath = '/settings';
@@ -74,5 +75,15 @@ class HeroesFilterPageConfig extends PageConfig {
   @override
   Widget buildContent() {
     return HeroesFilterPage();
+  }
+}
+
+class ListSeasonsPageConfig extends PageConfig {
+  const ListSeasonsPageConfig({String key = 'Seasons'}) : super(key: key);
+  final String path = listEpisodesPath;
+
+  @override
+  Widget buildContent() {
+    return SeasonsListPage();
   }
 }

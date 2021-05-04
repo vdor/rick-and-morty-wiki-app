@@ -76,7 +76,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
               const SizedBox(
                 height: 24,
               ),
-              const EpisodesList(episodes: [
+              const EpisodesList(seasons: [
                 Episode(
                     title: "title",
                     name: "name",

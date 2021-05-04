@@ -6,17 +6,20 @@ class NavigationItem extends StatelessWidget {
   final bool active;
   final String title;
   final ImageProvider image;
+  final GestureTapCallback onTap;
 
   const NavigationItem({
     required this.active,
     required this.title,
     required this.image,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
   NavigationItem.character({
     required this.active,
     required this.title,
+    required this.onTap,
     Key? key,
   })  : image = AssetImage("assets/images/ic_character.png"),
         super(key: key);
@@ -24,6 +27,7 @@ class NavigationItem extends StatelessWidget {
   NavigationItem.episode({
     required this.active,
     required this.title,
+    required this.onTap,
     Key? key,
   })  : image = AssetImage("assets/images/ic_episode.png"),
         super(key: key);
@@ -31,6 +35,7 @@ class NavigationItem extends StatelessWidget {
   NavigationItem.location({
     required this.active,
     required this.title,
+    required this.onTap,
     Key? key,
   })  : image = AssetImage("assets/images/ic_location.png"),
         super(key: key);
@@ -38,6 +43,7 @@ class NavigationItem extends StatelessWidget {
   NavigationItem.settings({
     required this.active,
     required this.title,
+    required this.onTap,
     Key? key,
   })  : image = AssetImage("assets/images/ic_settings.png"),
         super(key: key);
@@ -46,7 +52,7 @@ class NavigationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = _getColor(context);
     return InkWell(
-      onTap: active ? null : () {},
+      onTap: active ? null : onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
@@ -59,7 +65,7 @@ class NavigationItem extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             Text(
-              "Characters",
+              title,
               style: Theme.of(context)
                   .primaryTextTheme
                   .caption

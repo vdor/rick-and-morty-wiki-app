@@ -1,10 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 
-class RouterState extends Equatable {
-  late final List<Page> pages;
+enum BottomBarItem {
+  characters,
+  seasons,
+  locations,
+  settings,
+}
 
-  RouterState({required this.pages});
+class RouterState extends Equatable {
+  final Map<BottomBarItem, List<Page>> items;
+  final BottomBarItem currentBarItem;
+
+  RouterState({required this.items, required this.currentBarItem});
+
+  List<Page> get pages => items[currentBarItem] ?? [];
 
   @override
   List<Object> get props => [pages];

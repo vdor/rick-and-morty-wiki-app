@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:rick_and_morty_wiki/router/bloc/state.dart';
 import 'package:rick_and_morty_wiki/router/page_configs/base.dart';
 
 abstract class RouterEvent extends Equatable {
@@ -26,4 +27,10 @@ class RouterSetPathEvent extends RouterEvent {
 
 class RouterPopEvent extends RouterEvent {
   const RouterPopEvent();
+}
+
+class RouterSetBarItem extends RouterEvent {
+  final BottomBarItem item;
+
+  const RouterSetBarItem(this.item);
 }
