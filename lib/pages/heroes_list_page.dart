@@ -9,6 +9,8 @@ import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar
 
 import 'package:rick_and_morty_wiki/widgets/heroes_list/heroes_list.dart';
 import 'package:rick_and_morty_wiki/widgets/heroes_list/heroes_list_app_bar.dart';
+import 'package:rick_and_morty_wiki/widgets/heroes_list/not_found_heroes_by_filter.dart';
+import 'package:rick_and_morty_wiki/widgets/heroes_list/not_found_heroes_by_query.dart';
 
 class ListHeroesPage extends StatefulWidget {
   @override
@@ -60,6 +62,10 @@ class _StateListHeroesPage extends State<ListHeroesPage> {
   Widget _buildListOfHeroes() {
     return BlocBuilder<HeroesBloc, HeroesState>(builder: (context, state) {
       if (state is HeroesLoadedState) {
+        if (state.heroes.length == 0) {
+          return NotFoundHeroesByFilter();
+        }
+
         return HeroesList(
           heroes: state.heroes,
           title: "Characters: ${state.heroes.length}",
@@ -73,6 +79,10 @@ class _StateListHeroesPage extends State<ListHeroesPage> {
   Widget _buildFilteredByQueryHeroes() {
     return BlocBuilder<HeroesBloc, HeroesState>(builder: (context, state) {
       if (state is HeroesLoadedState) {
+        if (state.heroes.length == 0) {
+          return NotFoundHeroesByQuery();
+        }
+
         return HeroesList(
           heroes: state.heroes,
           title: "Search Results",
