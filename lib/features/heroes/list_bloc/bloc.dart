@@ -97,6 +97,20 @@ class HeroesBloc extends Bloc<HeroesEvent, HeroesState> {
       );
     }
 
+    if (event is HeroesSetSearchQueryEvent) {
+      final currentFilter = await filterRepo.getFilter();
+      final filter = currentFilter.copyWith(query: event.query);
+      await filterRepo.setFilter(filter);
+      List<HeroInfo> heroes =
+          event.autoload ? (await _getHeroes(filter)).toList() : const [];
+
+      yield HeroesLoadedState(
+        heroes: heroes,
+        filter: filter,
+        loaded: event.autoload,
+      );
+    }
+
     yield state;
   }
 

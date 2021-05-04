@@ -3,8 +3,9 @@ import 'package:flutter/widgets.dart';
 
 class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? right;
+  final GestureTapCallback? onBack;
 
-  const SimpleAppBar({this.right});
+  const SimpleAppBar({this.right, this.onBack});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
                         child: Material(
                           color: Theme.of(context).primaryColorLight,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: onBack,
                             child: Icon(
                               Icons.arrow_back,
                               color: Theme.of(context).accentIconTheme.color,

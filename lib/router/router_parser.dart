@@ -6,7 +6,6 @@ class RouteParser extends RouteInformationParser<PageConfig> {
   @override
   Future<PageConfig> parseRouteInformation(
       RouteInformation routeInformation) async {
-    // return HeroDetailsPageConfig();
     if (routeInformation.location == null) {
       return SplashPageConfig();
     }
@@ -24,9 +23,14 @@ class RouteParser extends RouteInformationParser<PageConfig> {
         return SplashPageConfig();
       case listHeroesPath:
         return ListHeroesPageConfig();
-      default:
-        return SplashPageConfig();
+      case filterHeroesPath:
+        return HeroesFilterPageConfig();
     }
+
+    if (path == heroDetailsPath.replaceAll("/id", "")) {
+      return HeroDetailsPageConfig(key: path, path: uri.toString());
+    }
+    return SplashPageConfig();
   }
 
   @override

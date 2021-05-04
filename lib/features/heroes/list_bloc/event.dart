@@ -52,3 +52,10 @@ class HeroesSetOrderBy extends HeroesEvent {
 
   const HeroesSetOrderBy({required this.orderBy, this.autoload = false});
 }
+
+class HeroesSetSearchQueryEvent extends HeroesEvent {
+  final String? query;
+  final bool autoload;
+
+  const HeroesSetSearchQueryEvent({required this.query, this.autoload = false});
+}

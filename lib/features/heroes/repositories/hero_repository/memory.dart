@@ -122,11 +122,32 @@ class HeroInMemoryRepository extends HeroRepository {
 
   @override
   Future<Iterable<HeroInfo>> filter(HeroesFilter filter) {
-    final heroes = _heroes
-        .where((h) => h.heroInfo.name
+    Iterable<HeroInfoDetailed> heroes = _heroes.where((h) => h.heroInfo.name
+        .toLowerCase()
+        .contains(filter.query?.toLowerCase() ?? ""));
+    final result = heroes
+        .where((hero) => _matchesFilter(hero, filter))
+        .map((e) => e.heroInfo);
+    return Future.value(result);
+  }
+
+  bool _matchesFilter(HeroInfoDetailed hero, HeroesFilter filter) {
+    if (filter.aliveState.isNotEmpty &&
+        !filter.aliveState.contains(hero.heroInfo.aliveState)) {
+      return false;
+    }
+
+    if (filter.sex.isNotEmpty && !filter.sex.contains(hero.heroInfo.sex)) {
+      return false;
+    }
+
+    if (filter.query != null &&
+        !hero.heroInfo.name
             .toLowerCase()
-            .contains(filter.query?.toLowerCase() ?? ""))
-        .map((h) => h.heroInfo);
-    return Future.value(heroes);
+            .contains(filter.query?.toLowerCase() ?? "")) {
+      return false;
+    }
+
+    return true;
   }
 }

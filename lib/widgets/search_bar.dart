@@ -6,10 +6,12 @@ typedef ChangeTextHandler = void Function(String);
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   final String hintText;
   final ChangeTextHandler onChangeText;
+  final VoidCallback? goToFilter;
 
   const SearchBar({
     required this.hintText,
     required this.onChangeText,
+    this.goToFilter,
   });
 
   @override
@@ -150,7 +152,7 @@ class _StateSearchBar extends State<SearchBar> {
                               Icons.filter_alt_outlined,
                               color: Theme.of(context).iconTheme.color,
                             ),
-                            onPressed: hasText ? null : () {},
+                            onPressed: hasText ? null : widget.goToFilter,
                           ),
                         ),
                       ),
