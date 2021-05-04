@@ -125,9 +125,19 @@ class HeroInMemoryRepository extends HeroRepository {
     Iterable<HeroInfoDetailed> heroes = _heroes.where((h) => h.heroInfo.name
         .toLowerCase()
         .contains(filter.query?.toLowerCase() ?? ""));
-    final result = heroes
+    List<HeroInfo> result = heroes
         .where((hero) => _matchesFilter(hero, filter))
-        .map((e) => e.heroInfo);
+        .map((e) => e.heroInfo)
+        .toList();
+
+    if (filter.orderBy == HeroesOrder.desc) {
+      result.sort((a, b) => a.name.compareTo(b.name));
+    }
+
+    if (filter.orderBy == HeroesOrder.asc) {
+      result.sort((a, b) => a.name.compareTo(b.name) * -1);
+    }
+
     return Future.value(result);
   }
 
