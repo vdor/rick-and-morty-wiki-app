@@ -4,14 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/event.dart';
 import 'package:rick_and_morty_wiki/features/heroes/list_bloc/state.dart';
-import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
-import 'package:rick_and_morty_wiki/router/bloc/events.dart';
-import 'package:rick_and_morty_wiki/router/page_configs/configs.dart';
 
 import 'package:rick_and_morty_wiki/widgets/bottom_navigation_bar/navigation_bar.dart';
 
 import 'package:rick_and_morty_wiki/widgets/heroes_list/heroes_list.dart';
-import 'package:rick_and_morty_wiki/widgets/search_bar.dart';
+import 'package:rick_and_morty_wiki/widgets/heroes_list/heroes_list_app_bar.dart';
 
 class ListHeroesPage extends StatefulWidget {
   @override
@@ -30,27 +27,10 @@ class _StateListHeroesPage extends State<ListHeroesPage> {
     }
   }
 
-  _onChangeSearchQuery(BuildContext context, String value) {
-    BlocProvider.of<HeroesBloc>(context).add(
-      HeroesSetSearchQueryEvent(
-        query: value,
-        autoload: true,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchBar(
-        hintText: "Searh a hero",
-        onChangeText: (text) {
-          _onChangeSearchQuery(context, text);
-        },
-        goToFilter: () {
-          _goToFilter(context);
-        },
-      ),
+      appBar: HeroesListAppBar(),
       bottomNavigationBar: BottomNavBar(),
       body: Material(
         color: Theme.of(context).primaryColor,
@@ -102,13 +82,5 @@ class _StateListHeroesPage extends State<ListHeroesPage> {
 
       return SizedBox.shrink();
     });
-  }
-
-  _goToFilter(BuildContext context) {
-    BlocProvider.of<RouterBloc>(context).add(
-      RouterPushEvent(
-        HeroesFilterPageConfig(),
-      ),
-    );
   }
 }

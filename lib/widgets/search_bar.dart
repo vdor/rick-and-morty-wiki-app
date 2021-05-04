@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rick_and_morty_wiki/theme.dart';
 
 typedef ChangeTextHandler = void Function(String);
 
@@ -7,10 +8,12 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   final String hintText;
   final ChangeTextHandler onChangeText;
   final VoidCallback? goToFilter;
+  final bool filterApplied;
 
   const SearchBar({
     required this.hintText,
     required this.onChangeText,
+    required this.filterApplied,
     this.goToFilter,
   });
 
@@ -150,7 +153,9 @@ class _StateSearchBar extends State<SearchBar> {
                             splashRadius: 20,
                             icon: Icon(
                               Icons.filter_alt_outlined,
-                              color: Theme.of(context).iconTheme.color,
+                              color: widget.filterApplied
+                                  ? AppColors.blue
+                                  : Theme.of(context).iconTheme.color,
                             ),
                             onPressed: hasText ? null : widget.goToFilter,
                           ),
