@@ -17,5 +17,5 @@ class RouterState extends Equatable {
   List<Page> get pages => items[currentBarItem] ?? [];
 
   @override
-  List<Object> get props => [pages];
+  List<Object> get props => [items, currentBarItem];
 }
