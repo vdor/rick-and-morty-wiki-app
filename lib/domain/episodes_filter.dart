@@ -9,6 +9,8 @@ class EpisodesFilter extends Equatable {
 
   bool get isNotEmpty => query != null && query!.isNotEmpty;
 
+  bool get isEmpty => !isNotEmpty;
+
   @override
   List<Object?> get props => [query];
 }

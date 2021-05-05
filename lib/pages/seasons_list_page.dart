@@ -29,7 +29,8 @@ class _StateSeasonsListPage extends State<SeasonsListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO: create your own
+      backgroundColor: Theme.of(context).primaryColor,
+      // TODO: create for episodes
       appBar: HeroesListAppBar(),
       bottomNavigationBar: BottomNavBar(),
       body: Material(
