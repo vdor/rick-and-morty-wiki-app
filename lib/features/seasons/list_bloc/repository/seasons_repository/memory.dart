@@ -47,4 +47,17 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
   Future<Iterable<Season>> getAll() {
     return Future.value(_seasons);
   }
+
+  @override
+  Future<Iterable<Season>> filter(String query) {
+    final qLower = query.toLowerCase();
+    final seaonsFiltered = _seasons.map((s) {
+      return Season(
+          name: s.name,
+          episodes: s.episodes
+              .where((e) => e.name.toLowerCase().contains(qLower))
+              .toList());
+    }).where((s) => s.episodes.length != 0);
+    return Future.value(seaonsFiltered);
+  }
 }

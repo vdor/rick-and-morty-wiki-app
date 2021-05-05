@@ -9,11 +9,13 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   final ChangeTextHandler onChangeText;
   final VoidCallback? goToFilter;
   final bool filterApplied;
+  final bool hideFilter;
 
   const SearchBar({
     required this.hintText,
     required this.onChangeText,
-    required this.filterApplied,
+    this.filterApplied = false,
+    this.hideFilter = false,
     this.goToFilter,
   });
 
@@ -125,42 +127,44 @@ class _StateSearchBar extends State<SearchBar> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      AnimatedOpacity(
-                        opacity: hasText ? 0 : 1,
-                        duration: animationDuration,
-                        child: SizedBox(
-                          width: 1,
-                          height: 44,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).dividerColor,
+                      if (!widget.hideFilter) ...[
+                        SizedBox(
+                          width: 18,
+                        ),
+                        AnimatedOpacity(
+                          opacity: hasText ? 0 : 1,
+                          duration: animationDuration,
+                          child: SizedBox(
+                            width: 1,
+                            height: 44,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).dividerColor,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      AnimatedOpacity(
-                        opacity: hasText ? 0 : 1,
-                        duration: animationDuration,
-                        child: Material(
-                          color: Theme.of(context).primaryColorLight,
-                          child: IconButton(
-                            splashRadius: 20,
-                            icon: Icon(
-                              Icons.filter_alt_outlined,
-                              color: widget.filterApplied
-                                  ? AppColors.blue
-                                  : Theme.of(context).iconTheme.color,
+                        AnimatedOpacity(
+                          opacity: hasText ? 0 : 1,
+                          duration: animationDuration,
+                          child: Material(
+                            color: Theme.of(context).primaryColorLight,
+                            child: IconButton(
+                              splashRadius: 20,
+                              icon: Icon(
+                                Icons.filter_alt_outlined,
+                                color: widget.filterApplied
+                                    ? AppColors.blue
+                                    : Theme.of(context).iconTheme.color,
+                              ),
+                              onPressed: hasText ? null : widget.goToFilter,
                             ),
-                            onPressed: hasText ? null : widget.goToFilter,
                           ),
                         ),
-                      ),
+                      ],
                     ],
                   ),
                 ))),
