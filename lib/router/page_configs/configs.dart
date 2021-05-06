@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:rick_and_morty_wiki/pages/episode_details_page.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_filter_page.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_list_page.dart';
 import 'package:rick_and_morty_wiki/pages/hero_details_page.dart';
@@ -85,5 +86,26 @@ class ListSeasonsPageConfig extends PageConfig {
   @override
   Widget buildContent() {
     return SeasonsListPage();
+  }
+}
+
+class EpisodeDetailsPageConfig extends PageConfig {
+  final String path;
+
+  const EpisodeDetailsPageConfig({required String key, required this.path})
+      : super(key: path);
+
+  EpisodeDetailsPageConfig.fromId(String id, {String? key})
+      : path = HeroDetailsPageConfig.buildPathById(id),
+        super(key: key ?? 'EpisodeDetailsPageConfig-$id');
+
+  static String buildPathById(String id) =>
+      episodeDetailsPath.replaceAll(":id", id);
+
+  String get id => path.split("/").last;
+
+  @override
+  Widget buildContent() {
+    return EpisodeDetailsPage(id);
   }
 }

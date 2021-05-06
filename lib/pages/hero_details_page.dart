@@ -114,7 +114,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
           children: [
             Text(
               hero?.heroInfo.name ?? "",
-              style: Theme.of(context).primaryTextTheme.headline5,
+              style: Theme.of(context).primaryTextTheme.headline4,
             ),
             SizedBox(height: 4),
             Text(

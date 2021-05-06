@@ -32,6 +32,9 @@ class RouteParser extends RouteInformationParser<PageConfig> {
     if (path == heroDetailsPath.replaceAll("/id", "")) {
       return HeroDetailsPageConfig(key: path, path: uri.toString());
     }
+    if (path == episodeDetailsPath.replaceAll("/id", "")) {
+      return EpisodeDetailsPageConfig(key: path, path: uri.toString());
+    }
     return SplashPageConfig();
   }
 

@@ -65,12 +65,19 @@ class TextStyles {
     height: 1.8,
   );
 
-  static TextStyle headline5 = TextStyle(
+  static TextStyle headline4 = TextStyle(
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     fontSize: 34,
     letterSpacing: 0.25,
+  );
+
+  static TextStyle headline5 = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
+    fontStyle: FontStyle.normal,
+    fontSize: 24,
   );
 
   static TextStyle headline6 = TextStyle(

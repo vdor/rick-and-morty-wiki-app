@@ -120,7 +120,6 @@ class _StateHeroesList extends State<HeroesList> {
           aliveState: heroes[index].aliveState,
           name: heroes[index].name,
           kind: heroes[index].kind,
-          sex: _sexText(heroes[index].sex),
           useHero: displayListing == DisplayListType.list,
           onTap: () {
             _onSelectHero(index);

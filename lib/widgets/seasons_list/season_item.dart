@@ -7,18 +7,22 @@ class EpisodeListItem extends StatelessWidget {
   final String name;
   final String date;
   final ImageProvider image;
+  final Object heroTag;
+  final GestureTapCallback? onTap;
 
   const EpisodeListItem({
     required this.title,
     required this.name,
     required this.date,
     required this.image,
+    required this.heroTag,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
@@ -26,12 +30,15 @@ class EpisodeListItem extends StatelessWidget {
             SizedBox(
               width: 60,
               height: 60,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: image,
+              child: Hero(
+                tag: heroTag,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: image,
+                    ),
                   ),
                 ),
               ),

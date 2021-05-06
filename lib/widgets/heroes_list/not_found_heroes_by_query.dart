@@ -11,7 +11,10 @@ class NotFoundHeroesByQuery extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/images/mortry_middle_fingers.png"),
+          Image.asset(
+            "assets/images/mortry_middle_fingers.png",
+            fit: BoxFit.contain,
+          ),
           SizedBox(height: 28),
           Text(
             "A character with this name wasn't found",

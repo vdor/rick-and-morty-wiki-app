@@ -3,22 +3,20 @@ import 'package:flutter/widgets.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
 
-class HeroListItem extends StatelessWidget {
+class CharacterItem extends StatelessWidget {
   final String id;
   final ImageProvider image;
   final AliveState aliveState;
   final String name;
   final String kind;
   final GestureTapCallback? onTap;
-  final bool useHero;
 
-  const HeroListItem({
+  const CharacterItem({
     required this.id,
     required this.image,
     required this.aliveState,
     required this.name,
     required this.kind,
-    this.useHero = false,
     this.onTap,
     Key? key,
   }) : super(key: key);
@@ -54,7 +52,9 @@ class HeroListItem extends StatelessWidget {
                   style: Theme.of(context).primaryTextTheme.caption,
                 ),
               ],
-            )
+            ),
+            const Spacer(),
+            const Icon(Icons.chevron_right),
           ],
         ),
       ),
@@ -66,9 +66,6 @@ class HeroListItem extends StatelessWidget {
       radius: 37,
       backgroundImage: image,
     );
-    if (!useHero) {
-      return avatar;
-    }
     return Hero(
       tag: "$id-list",
       child: avatar,
