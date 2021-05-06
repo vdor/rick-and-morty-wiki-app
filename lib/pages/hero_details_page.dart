@@ -38,46 +38,50 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
     return Scaffold(
       body: Material(
         color: Theme.of(context).primaryColor,
-        child: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: [
-              _buildHeader(context),
-              SizedBox(height: 24),
-              _buildTitles(context),
-              const SizedBox(height: 24),
-              _buildProperties(context),
-              const SizedBox(height: 24),
-              const Divider(),
-              const SizedBox(
-                height: 36,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Episodes",
-                      style: Theme.of(context).primaryTextTheme.headline6,
+        child: CustomScrollView(
+          slivers: [
+            _buildHeader(context),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SizedBox(height: 24),
+                  _buildTitles(context),
+                  const SizedBox(height: 24),
+                  _buildProperties(context),
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(
+                    height: 36,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Episodes",
+                          style: Theme.of(context).primaryTextTheme.headline6,
+                        ),
+                        Text(
+                          "All episodes",
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .caption
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).secondaryHeaderColor),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "All episodes",
-                      style: Theme.of(context)
-                          .primaryTextTheme
-                          .caption
-                          ?.copyWith(
-                              color: Theme.of(context).secondaryHeaderColor),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  _buildEpisodes(),
+                ],
               ),
-              const SizedBox(
-                height: 24,
-              ),
-              _buildEpisodes(),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -91,16 +95,22 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
     return BlocBuilder<HeroDetailBloc, HeroDetailState>(
         builder: (context, state) {
       final hero = _getHero(state);
-      return Header(
-        onBackTap: () {
-          _goBack(context);
-        },
-        id: widget.id,
-        image: hero != null
-            ? NetworkImage(
-                (state as HeroDetailLoadedState).hero.heroInfo.imageUri,
-              )
-            : null,
+      return SliverAppBar(
+        stretch: true,
+        automaticallyImplyLeading: false,
+        expandedHeight: 250,
+        collapsedHeight: 150,
+        flexibleSpace: Header(
+          onBackTap: () {
+            _goBack(context);
+          },
+          id: widget.id,
+          image: hero != null
+              ? NetworkImage(
+                  (state as HeroDetailLoadedState).hero.heroInfo.imageUri,
+                )
+              : null,
+        ),
       );
     });
   }
