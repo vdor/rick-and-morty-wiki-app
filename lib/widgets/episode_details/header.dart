@@ -5,7 +5,7 @@ import 'package:rick_and_morty_wiki/widgets/back_btn.dart';
 
 class EpisodeHeader extends StatelessWidget {
   final Object heroTag;
-  final ImageProvider image;
+  final ImageProvider? image;
   final GestureTapCallback onBack;
   final double headerImageHeight;
 
@@ -22,15 +22,7 @@ class EpisodeHeader extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: [
-          Hero(
-            tag: heroTag,
-            child: Image(
-              image: image,
-              fit: BoxFit.fitWidth,
-              height: headerImageHeight,
-              width: double.infinity,
-            ),
-          ),
+          _buildImage(context),
           _buildBackBtn(),
           Align(
             alignment: Alignment.bottomCenter,
@@ -49,8 +41,9 @@ class EpisodeHeader extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Entry.scale(
-              duration: const Duration(milliseconds: 1500),
+            child: Entry.offset(
+              yOffset: 100,
+              duration: const Duration(milliseconds: 900),
               child: ClipOval(
                 child: Material(
                     color: AppColors.blue,
@@ -68,6 +61,45 @@ class EpisodeHeader extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildImage(BuildContext context) {
+    final content = SizedBox(
+      height: headerImageHeight,
+      width: double.infinity,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          image: image == null
+              ? null
+              : DecorationImage(
+                  image: image!,
+                  fit: BoxFit.fitWidth,
+                ),
+        ),
+      ),
+    );
+    return Hero(
+      tag: heroTag,
+      child: content,
+      flightShuttleBuilder: (flightContext, animation, flightDirection,
+              fromHeroContext, toHeroContext) =>
+          SizedBox(
+        height: headerImageHeight,
+        width: double.infinity,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            image: image == null
+                ? null
+                : DecorationImage(
+                    image: image!,
+                    fit: BoxFit.cover,
+                  ),
+          ),
+        ),
       ),
     );
   }

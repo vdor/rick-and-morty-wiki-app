@@ -6,6 +6,7 @@ class Episode extends Equatable {
   final String name;
   final String date;
   final String imageUri;
+  final String description;
 
   const Episode({
     required this.id,
@@ -13,8 +14,9 @@ class Episode extends Equatable {
     required this.name,
     required this.date,
     required this.imageUri,
+    required this.description,
   });
 
   @override
-  List<Object?> get props => [id, title, name, date];
+  List<Object?> get props => [id, title, name, date, imageUri, description];
 }

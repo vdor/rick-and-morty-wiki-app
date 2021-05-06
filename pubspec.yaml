@@ -61,6 +61,7 @@ flutter:
     - "assets/images/ic_filter_applied.png"
     - "assets/images/ic_sort_asc.png"
     - "assets/images/ic_sort_desc.png"
+    - "assets/images/ic_play.png"
     - "assets/images/mortry_middle_fingers.png"
     - "assets/images/morty_screaming.png"
 

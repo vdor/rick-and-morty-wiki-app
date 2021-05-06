@@ -30,18 +30,7 @@ class EpisodeListItem extends StatelessWidget {
             SizedBox(
               width: 60,
               height: 60,
-              child: Hero(
-                tag: heroTag,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: image,
-                    ),
-                  ),
-                ),
-              ),
+              child: _buildImage(),
             ),
             SizedBox(width: 16),
             Expanded(
@@ -73,6 +62,33 @@ class EpisodeListItem extends StatelessWidget {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImage() {
+    final content = DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: image,
+        ),
+      ),
+    );
+    return Hero(
+      tag: heroTag,
+      child: content,
+      flightShuttleBuilder: (flightContext, animation, flightDirection,
+              fromHeroContext, toHeroContext) =>
+          DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: image,
+          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_wiki/domain/episodes_filter.dart';
 import 'package:rick_and_morty_wiki/domain/season.dart';
 import 'package:rick_and_morty_wiki/features/seasons/list_bloc/event.dart';
-import 'package:rick_and_morty_wiki/features/seasons/list_bloc/repository/seasons_repository/base.dart';
+import 'package:rick_and_morty_wiki/features/seasons/repository/seasons_repository/base.dart';
 import 'package:rick_and_morty_wiki/features/seasons/list_bloc/state.dart';
 
 class SeasonsBloc extends Bloc<SeasonsEvent, SeasonsState> {

@@ -167,4 +167,12 @@ class HeroInMemoryRepository extends HeroRepository {
 
     return true;
   }
+
+  @override
+  Future<Iterable<HeroInfo>> findByEpisodeId(String episodeId) {
+    final filtered = _heroes
+        .where((hero) => hero.episodeIds.contains(episodeId))
+        .map((c) => c.heroInfo);
+    return Future.value(filtered);
+  }
 }

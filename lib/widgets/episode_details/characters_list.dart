@@ -11,6 +11,7 @@ class CharactersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
         itemCount: characters.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {

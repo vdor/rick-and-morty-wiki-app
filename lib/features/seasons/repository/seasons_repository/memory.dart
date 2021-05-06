@@ -1,6 +1,6 @@
 import 'package:rick_and_morty_wiki/domain/episode.dart';
 import 'package:rick_and_morty_wiki/domain/season.dart';
-import 'package:rick_and_morty_wiki/features/seasons/list_bloc/repository/seasons_repository/base.dart';
+import 'package:rick_and_morty_wiki/features/seasons/repository/seasons_repository/base.dart';
 
 class SeasonsRepositoryInMemory extends SeasonsRepository {
   final List<Season> _seasons = [
@@ -14,6 +14,8 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
           date: "2 December 2013",
           imageUri:
               "https://static.wikia.nocookie.net/rickandmorty/images/4/4b/S1e1_Rick-and-morty.png/revision/latest/scale-to-width-down/620?cb=20160904220006",
+          description:
+              "'Pilot' is the first episode of the first season of Rick and Morty. It is the first episode of the series overall. It premiered on December 2, 2013. It was written by Dan Harmon and Justin Roiland, and directed by Justin Roiland.",
         ),
         Episode(
           id: "s1_e2",
@@ -22,6 +24,8 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
           date: "2 December 2013",
           imageUri:
               "https://static.wikia.nocookie.net/rickandmorty/images/d/d7/Lawnmower_Dog.png/revision/latest/scale-to-width-down/620?cb=20160906083546",
+          description:
+              "'Lawnmower Dog' is the second episode of the first season of Rick and Morty. It is the second episode of the series overall. It premiered on December 9, 2013. It was written by Ryan Ridley and directed by John Rice.",
         ),
       ],
     ),
@@ -35,15 +39,18 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
           date: "July 26, 2015",
           imageUri:
               "https://static.wikia.nocookie.net/rickandmorty/images/2/29/A_Rickle_in_Time.png/revision/latest/scale-to-width-down/620?cb=20160920022627",
+          description:
+              "'Lawnmower Dog' is the second episode of the first season of Rick and Morty. It is the second episode of the series overall. It premiered on December 9, 2013. It was written by Ryan Ridley and directed by John Rice.",
         ),
         Episode(
-          id: "s2_e2",
-          title: "Episode 2",
-          name: "Mortynight Run",
-          date: "August 2, 2015",
-          imageUri:
-              "https://static.wikia.nocookie.net/rickandmorty/images/e/e0/Mortynight_Run.png/revision/latest/scale-to-width-down/620?cb=20160919065322",
-        ),
+            id: "s2_e2",
+            title: "Episode 2",
+            name: "Mortynight Run",
+            date: "August 2, 2015",
+            imageUri:
+                "https://static.wikia.nocookie.net/rickandmorty/images/e/e0/Mortynight_Run.png/revision/latest/scale-to-width-down/620?cb=20160919065322",
+            description:
+                "'A Rickle in Time' is the first episode of the second season of Rick and Morty. It is the twelfth episode of the series overall. It premiered on July 26, 2015. It was written by Matt Roller and directed by Wes Archer."),
       ],
     ),
   ];
@@ -69,5 +76,11 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
   Future<Iterable<Episode>> getEpisodesByIds(List<String> ids) {
     final episodes = _seasons.expand((season) => season.episodes);
     return Future.value(episodes.where((episode) => ids.contains(episode.id)));
+  }
+
+  @override
+  Future<Episode?> getEpisodeById(String id) {
+    final episodes = _seasons.expand((season) => season.episodes);
+    return Future.value(episodes.firstWhere((episode) => id == episode.id));
   }
 }

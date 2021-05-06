@@ -5,4 +5,5 @@ abstract class SeasonsRepository {
   Future<Iterable<Season>> getAll();
   Future<Iterable<Season>> filter(String query);
   Future<Iterable<Episode>> getEpisodesByIds(List<String> ids);
+  Future<Episode?> getEpisodeById(String id);
 }

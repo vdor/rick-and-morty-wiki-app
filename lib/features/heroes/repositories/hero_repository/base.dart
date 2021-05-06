@@ -6,4 +6,5 @@ abstract class HeroRepository {
   Future<Iterable<HeroInfo>> filter(HeroesFilter filter);
 
   Future<HeroInfoDetailed?> getById(String id);
+  Future<Iterable<HeroInfo>> findByEpisodeId(String episodeId);
 }
