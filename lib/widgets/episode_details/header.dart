@@ -79,6 +79,17 @@ class EpisodeHeader extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                 ),
         ),
+        child: Entry.opacity(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.black.withOpacity(.4), Colors.transparent],
+              ),
+            ),
+          ),
+        ),
       ),
     );
     return Hero(
