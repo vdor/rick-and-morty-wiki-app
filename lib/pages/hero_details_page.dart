@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_wiki/domain/episode.dart';
 import 'package:rick_and_morty_wiki/domain/hero.dart';
 import 'package:rick_and_morty_wiki/features/heroes/detail_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/heroes/detail_bloc/event.dart';
@@ -76,43 +75,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
               const SizedBox(
                 height: 24,
               ),
-              const EpisodesList(seasons: [
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-                Episode(
-                    title: "title",
-                    name: "name",
-                    date: "date",
-                    imageUri: "https://picsum.photos/200/300?q"),
-              ]),
+              _buildEpisodes(),
             ],
           ),
         ),
@@ -213,6 +176,18 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
             onTap: () {},
           ),
         ],
+      );
+    });
+  }
+
+  Widget _buildEpisodes() {
+    return BlocBuilder<HeroDetailBloc, HeroDetailState>(
+        builder: (context, state) {
+      if (state is! HeroDetailLoadedState) {
+        return SizedBox.shrink();
+      }
+      return EpisodesList(
+        seasons: state.episodes,
       );
     });
   }

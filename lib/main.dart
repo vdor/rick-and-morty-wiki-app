@@ -27,7 +27,8 @@ final routerBloc = RouterBloc({
 });
 final heroesBloc = HeroesBloc(
     heroesRepo: HeroInMemoryRepository(), filterRepo: heroFilterRepo);
-final heroDetailBloc = HeroDetailBloc(repo: HeroInMemoryRepository());
+final heroDetailBloc =
+    HeroDetailBloc(repo: HeroInMemoryRepository(), seasonsRepo: seasonsRepo);
 
 final seasonsBloc = SeasonsBloc(seasonsRepository: seasonsRepo);
 

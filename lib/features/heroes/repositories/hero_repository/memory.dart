@@ -17,6 +17,7 @@ const List<HeroInfoDetailed> _heroes = [
         "The titular main protagonist of Rick and Morty. He is a genius scientist whose alcoholism and reckless, nihilistic behavior are a source of concern for his daughter's family, as well as the safety of their son, Morty.",
     location: "Earth (Dimension C-137 - formerly)",
     place: "Earth (Dimension C-137)",
+    episodeIds: ['s1_e1', 's1_e2', 's2_e1', 's2_e2'],
   ),
   const HeroInfoDetailed(
     heroInfo: HeroInfo(
@@ -32,6 +33,7 @@ const List<HeroInfoDetailed> _heroes = [
         "the titular co-protagonist of Rick and Morty. He is the grandson of Rick and is often forced to tag along on his various misadventures. Morty attends Harry Herpson High School along with his sister, Summer.",
     location: "Earth (Dimension C-137)",
     place: "Earth (Dimension C-137)",
+    episodeIds: ['s1_e1', 's1_e2', 's2_e1', 's2_e2'],
   ),
   const HeroInfoDetailed(
     heroInfo: const HeroInfo(
@@ -46,6 +48,7 @@ const List<HeroInfoDetailed> _heroes = [
     description: "description",
     location: "Earth (Dimension C-137)",
     place: "Earth (Dimension C-137)",
+    episodeIds: ['s1_e1', 's1_e2', 's2_e1'],
   ),
   const HeroInfoDetailed(
     heroInfo: const HeroInfo(
@@ -61,6 +64,7 @@ const List<HeroInfoDetailed> _heroes = [
         "The deuteragonist of Rick and Morty. She is the daughter of Jerry Smith and Beth Smith/Clone Beth, the older sister of Morty Smith, the granddaughter of Leonard Smith, Joyce Smith, Rick Sanchez and Mrs. Sanchez/Diane Sanchez, the great-granddaughter of Rick's Father and a unnamed woman, and the great-niece of the Unnamed Uncle, she currently acts as the older sister and the granddaughter of the Morty and Rick from Dimension C-137. She is the only other member of the the Smith Family to be aware of that fact",
     location: "Earth (Dimension C-137)",
     place: "Earth (Dimension C-137)",
+    episodeIds: ['s1_e1', 's1_e2', 's2_e2'],
   ),
   const HeroInfoDetailed(
     heroInfo: const HeroInfo(
@@ -76,6 +80,7 @@ const List<HeroInfoDetailed> _heroes = [
         "President Morty, colloquially known as 'Evil Morty' among fans and the media, as Candidate Morty prior to his election and as Eye Patch Morty, may be one of the main antagonists of Rick and Morty, serving as the main antagonist of Close Rick-Counters of the Rick Kind and The Rickshank Rickdemption, with a cameo appearance as the main antagonist in Never Ricking Morty.",
     location: "Earth (unknown dimension; assumed)",
     place: "Earth (unknown dimension; assumed)",
+    episodeIds: ['s2_e2'],
   ),
   const HeroInfoDetailed(
     heroInfo: const HeroInfo(
@@ -91,6 +96,7 @@ const List<HeroInfoDetailed> _heroes = [
         "Mr. Meeseeks (voiced by Justin Roiland) is the name of all the Meeseeks summoned by activating a Mr. Meeseeks Box. The Meeseeks appear in the fifth episode of the first season, 'Meeseeks and Destroy' as the main antagonists. They are known to inhabit planets across the universe.",
     location: "unknown",
     place: "unknown",
+    episodeIds: ['s1_e2'],
   ),
   const HeroInfoDetailed(
     heroInfo: const HeroInfo(
@@ -106,6 +112,7 @@ const List<HeroInfoDetailed> _heroes = [
         "Mr. Poopybutthole is a long-time family friend of the Smith Family and a recurring character of the show. He is mostly shown breaking the fourth wall during the show.",
     location: "unknown",
     place: "unknown",
+    episodeIds: ['s2_e2'],
   ),
 ];
 

@@ -38,12 +38,14 @@ class HeroInfoDetailed extends Equatable {
   final String description;
   final String location;
   final String place;
+  final List<String> episodeIds;
 
   const HeroInfoDetailed({
     required this.heroInfo,
     required this.description,
     required this.location,
     required this.place,
+    required this.episodeIds,
   });
 
   @override

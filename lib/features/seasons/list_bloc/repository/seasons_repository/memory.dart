@@ -8,6 +8,7 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
       name: "Season 1",
       episodes: [
         Episode(
+          id: "s1_e1",
           title: "Episode 1",
           name: "Pilot",
           date: "2 December 2013",
@@ -15,6 +16,7 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
               "https://static.wikia.nocookie.net/rickandmorty/images/4/4b/S1e1_Rick-and-morty.png/revision/latest/scale-to-width-down/620?cb=20160904220006",
         ),
         Episode(
+          id: "s1_e2",
           title: "Episode 2",
           name: "Lawnmower Dog",
           date: "2 December 2013",
@@ -27,6 +29,7 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
       name: "Season 2",
       episodes: [
         Episode(
+          id: "s2_e1",
           title: "Episode 1",
           name: "A Rickle in Time",
           date: "July 26, 2015",
@@ -34,6 +37,7 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
               "https://static.wikia.nocookie.net/rickandmorty/images/2/29/A_Rickle_in_Time.png/revision/latest/scale-to-width-down/620?cb=20160920022627",
         ),
         Episode(
+          id: "s2_e2",
           title: "Episode 2",
           name: "Mortynight Run",
           date: "August 2, 2015",
@@ -59,5 +63,11 @@ class SeasonsRepositoryInMemory extends SeasonsRepository {
               .toList());
     }).where((s) => s.episodes.length != 0);
     return Future.value(seaonsFiltered);
+  }
+
+  @override
+  Future<Iterable<Episode>> getEpisodesByIds(List<String> ids) {
+    final episodes = _seasons.expand((season) => season.episodes);
+    return Future.value(episodes.where((episode) => ids.contains(episode.id)));
   }
 }

@@ -1,12 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class Episode extends Equatable {
+  final String id;
   final String title;
   final String name;
   final String date;
   final String imageUri;
 
   const Episode({
+    required this.id,
     required this.title,
     required this.name,
     required this.date,
@@ -14,5 +16,5 @@ class Episode extends Equatable {
   });
 
   @override
-  List<Object?> get props => [title, name, date];
+  List<Object?> get props => [id, title, name, date];
 }
