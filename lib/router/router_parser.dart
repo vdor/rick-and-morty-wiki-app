@@ -27,6 +27,8 @@ class RouteParser extends RouteInformationParser<PageConfig> {
         return HeroesFilterPageConfig();
       case listEpisodesPath:
         return ListSeasonsPageConfig();
+      case settingsPath:
+        return SettingsPageConfig();
     }
 
     if (path == heroDetailsPath.replaceAll("/id", "")) {

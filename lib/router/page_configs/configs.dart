@@ -4,6 +4,7 @@ import 'package:rick_and_morty_wiki/pages/heroes_filter_page.dart';
 import 'package:rick_and_morty_wiki/pages/heroes_list_page.dart';
 import 'package:rick_and_morty_wiki/pages/hero_details_page.dart';
 import 'package:rick_and_morty_wiki/pages/seasons_list_page.dart';
+import 'package:rick_and_morty_wiki/pages/settings_page.dart';
 import 'package:rick_and_morty_wiki/pages/splash_page.dart';
 
 import 'base.dart';
@@ -107,5 +108,15 @@ class EpisodeDetailsPageConfig extends PageConfig {
   @override
   Widget buildContent() {
     return EpisodeDetailsPage(id);
+  }
+}
+
+class SettingsPageConfig extends PageConfig {
+  const SettingsPageConfig({String key = 'Settings'}) : super(key: key);
+  final String path = settingsPath;
+
+  @override
+  Widget buildContent() {
+    return SetttingsPage();
   }
 }

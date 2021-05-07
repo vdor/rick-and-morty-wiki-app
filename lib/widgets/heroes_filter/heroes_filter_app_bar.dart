@@ -16,6 +16,8 @@ class HeroesFilterAppBar extends StatelessWidget
       final hasFilter = state is HeroesLoadedState && state.filter.isNotEmpty;
 
       return SimpleAppBar(
+        title: "Filter",
+        highlight: true,
         onBack: () {
           _goBack(context);
         },

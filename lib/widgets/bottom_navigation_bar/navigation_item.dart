@@ -32,14 +32,6 @@ class NavigationItem extends StatelessWidget {
   })  : image = AssetImage("assets/images/ic_episode.png"),
         super(key: key);
 
-  NavigationItem.location({
-    required this.active,
-    required this.title,
-    required this.onTap,
-    Key? key,
-  })  : image = AssetImage("assets/images/ic_location.png"),
-        super(key: key);
-
   NavigationItem.settings({
     required this.active,
     required this.title,

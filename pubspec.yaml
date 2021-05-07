@@ -64,6 +64,7 @@ flutter:
     - "assets/images/ic_play.png"
     - "assets/images/mortry_middle_fingers.png"
     - "assets/images/morty_screaming.png"
+    - "assets/images/ic_appereance.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

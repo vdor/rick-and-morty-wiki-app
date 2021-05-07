@@ -48,6 +48,13 @@ class TextStyles {
     color: AppColors.green,
   );
 
+  static TextStyle button = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    letterSpacing: 1.5,
+  );
+
   static TextStyle subtitle1 = TextStyle(
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w500,

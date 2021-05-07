@@ -52,15 +52,12 @@ class BottomNavBar extends StatelessWidget {
                     _navigate(context, BottomBarItem.seasons);
                   },
                 ),
-                NavigationItem.location(
-                  active: itemSelected == BottomBarItem.locations,
-                  title: "Locations",
-                  onTap: () {},
-                ),
                 NavigationItem.settings(
                   active: itemSelected == BottomBarItem.settings,
                   title: "Settings",
-                  onTap: () {},
+                  onTap: () {
+                    _navigate(context, BottomBarItem.settings);
+                  },
                 ),
               ],
             );

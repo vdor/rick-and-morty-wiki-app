@@ -25,6 +25,7 @@ final seasonsRepo = SeasonsRepositoryInMemory();
 final routerBloc = RouterBloc({
   BottomBarItem.characters: [SplashPageConfig().buildPage()],
   BottomBarItem.seasons: [ListSeasonsPageConfig().buildPage()],
+  BottomBarItem.settings: [SettingsPageConfig().buildPage()],
 });
 final heroesRepo = HeroInMemoryRepository();
 final heroesBloc =
@@ -77,6 +78,7 @@ class App extends StatelessWidget {
               headline4: TextStyles.headline4.copyWith(color: AppColors.black),
               headline5: TextStyles.headline5.copyWith(color: AppColors.black),
               headline6: TextStyles.headline6.copyWith(color: AppColors.black),
+              button: TextStyles.button.copyWith(color: AppColors.black),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.grey7),
@@ -103,6 +105,7 @@ class App extends StatelessWidget {
               headline4: TextStyles.headline4.copyWith(color: AppColors.white),
               headline5: TextStyles.headline5.copyWith(color: AppColors.white),
               headline6: TextStyles.headline6.copyWith(color: AppColors.white),
+              button: TextStyles.button.copyWith(color: AppColors.white),
             ),
             accentTextTheme: TextTheme(
               bodyText1: TextStyles.bodyText1.copyWith(color: AppColors.white),

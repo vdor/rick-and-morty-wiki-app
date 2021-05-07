@@ -9,7 +9,6 @@ import 'package:rick_and_morty_wiki/router/page_configs/base.dart';
 final bottomItems = [
   BottomBarItem.characters,
   BottomBarItem.seasons,
-  BottomBarItem.locations,
   BottomBarItem.settings,
 ];
 
@@ -23,33 +22,26 @@ class AppRouterDelegate extends RouterDelegate<PageConfig> with ChangeNotifier {
     });
   }
 
+  final Map<BottomBarItem, int> bottomItemToIndex = {
+    BottomBarItem.characters: 0,
+    BottomBarItem.seasons: 1,
+    BottomBarItem.settings: 2,
+  };
+
   bool get canPop => bloc.state.pages.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
     return IndexedStack(
-      index: bloc.state.currentBarItem == BottomBarItem.characters ? 0 : 1,
+      index: bottomItemToIndex[bloc.state.currentBarItem],
       children: bottomItems
-          .map((item) => Stack(
-                children: [
-                  Offstage(
-                    offstage: item != BottomBarItem.characters,
-                    child: AppNavigator(
-                      key: Key("chars"),
-                      onPopPage: _onPopPage,
-                      pages: bloc.state.items[BottomBarItem.characters]!,
-                    ),
-                  ),
-                  Offstage(
-                    offstage: item != BottomBarItem.seasons,
-                    child: AppNavigator(
-                      key: Key("seasons"),
-                      onPopPage: _onPopPage,
-                      pages: bloc.state.items[BottomBarItem.seasons]!,
-                    ),
-                  ),
-                ],
-              ))
+          .map(
+            (item) => AppNavigator(
+              key: Key(item.toString()),
+              onPopPage: _onPopPage,
+              pages: bloc.state.items[item]!,
+            ),
+          )
           .toList(),
     );
   }
@@ -92,8 +84,4 @@ class AppRouterDelegate extends RouterDelegate<PageConfig> with ChangeNotifier {
   @override
   PageConfig get currentConfiguration =>
       bloc.state.pages.last.arguments as PageConfig;
-
-  List<Page> _buildPages() {
-    return List.unmodifiable(bloc.state.pages);
-  }
 }
