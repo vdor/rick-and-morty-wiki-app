@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty_wiki/domain/theme.dart';
+import 'package:rick_and_morty_wiki/features/settings/theme_bloc/bloc.dart';
+import 'package:rick_and_morty_wiki/features/settings/theme_bloc/event.dart';
+import 'package:rick_and_morty_wiki/features/settings/theme_bloc/state.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
-
-enum DarkTheme {
-  disabled,
-  enabled,
-  system,
-}
 
 class ThemeDialog extends StatefulWidget {
   @override
@@ -46,25 +45,33 @@ class _StateThemeDialog extends State<ThemeDialog> {
   }
 
   _buildTile(DarkTheme theme, String title) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Radio<DarkTheme>(
-            value: theme,
-            groupValue: _theme,
-            onChanged: _changeTheme,
-            activeColor: AppColors.blue,
+    return BlocBuilder<ThemeBloc, ThemeBaseState>(
+      builder: (context, state) {
+        if (state is! ThemeState) {
+          return SizedBox.shrink();
+        }
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Radio<DarkTheme>(
+                value: theme,
+                groupValue: state.theme,
+                onChanged: _changeTheme,
+                activeColor: AppColors.blue,
+              ),
+              // SizedBox(width: 16),
+              Text(
+                title,
+                style: Theme.of(context).accentTextTheme.bodyText1,
+              ),
+            ],
           ),
-          // SizedBox(width: 16),
-          Text(
-            title,
-            style: Theme.of(context).accentTextTheme.bodyText1,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -84,12 +91,8 @@ class _StateThemeDialog extends State<ThemeDialog> {
   }
 
   _changeTheme(DarkTheme? theme) {
-    print(theme);
-
     if (theme != null) {
-      setState(() {
-        _theme = theme;
-      });
+      BlocProvider.of<ThemeBloc>(context).add(SetThemeEvent(theme: theme));
     }
   }
 
