@@ -98,7 +98,7 @@ class _StateHeroDetailsPage extends State<HeroDetailsPage> {
       return SliverAppBar(
         stretch: true,
         automaticallyImplyLeading: false,
-        expandedHeight: 250,
+        expandedHeight: 270,
         collapsedHeight: 150,
         flexibleSpace: Header(
           onBackTap: () {

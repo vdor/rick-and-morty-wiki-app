@@ -34,7 +34,13 @@ class SettingsItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image(image: image, width: 27, height: 27, fit: BoxFit.contain),
+          Image(
+            image: image,
+            width: 27,
+            height: 27,
+            fit: BoxFit.contain,
+            color: Theme.of(context).iconTheme.color,
+          ),
           SizedBox(width: 20),
           Expanded(
             child: Column(

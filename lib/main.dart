@@ -12,7 +12,7 @@ import 'package:rick_and_morty_wiki/features/seasons/repository/seasons_reposito
 import 'package:rick_and_morty_wiki/features/settings/theme_bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/features/settings/theme_bloc/event.dart';
 import 'package:rick_and_morty_wiki/features/settings/theme_bloc/state.dart';
-import 'package:rick_and_morty_wiki/features/settings/theme_repository/memory.dart';
+import 'package:rick_and_morty_wiki/features/settings/theme_repository/sp.dart';
 import 'package:rick_and_morty_wiki/router/back_button_dispatcher.dart';
 import 'package:rick_and_morty_wiki/router/bloc/bloc.dart';
 import 'package:rick_and_morty_wiki/router/bloc/state.dart';
@@ -22,7 +22,7 @@ import 'package:rick_and_morty_wiki/router/router_parser.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
 
 void main() {
-  final themeRepo = ThemeRepositoryInMemory();
+  final themeRepo = ThemeRepositorySP();
   final themeBloc = ThemeBloc(repo: themeRepo);
   themeBloc.add(InitThemeEvent());
   runApp(App(
