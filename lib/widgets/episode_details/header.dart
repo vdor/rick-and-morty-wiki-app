@@ -1,5 +1,6 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rick_and_morty_wiki/theme.dart';
 import 'package:rick_and_morty_wiki/widgets/back_btn.dart';
 
@@ -53,7 +54,7 @@ class EpisodeHeader extends StatelessWidget {
                         width: 99,
                         height: 99,
                         child: Center(
-                          child: Image.asset("assets/images/ic_play.png"),
+                          child: SvgPicture.asset("assets/images/ic_play.svg"),
                         ),
                       ),
                     )),
